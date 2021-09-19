@@ -1,65 +1,89 @@
+
 import React from 'react';
 
-import axios from 'axios';
+// import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
 
+
+import Editcommentmodal from "./Editcommentmodal"
 class LikedPost extends React.Component {
+
 
     constructor(props) {
         super(props);
         this.state = {
-            likedPosts : [],
-               
-
+            likedPosts: [{ title: "hi", imgUrl: "https://avatars.githubusercontent.com/u/85199984?v=4", description: "abdijd", comment: "gg" }, { title: "hi", imgUrl: "https://avatars.githubusercontent.com/u/85199984?v=4", description: "abdijd", comment: "" }],
+            showCommentEdit: false,
+            obj: {}
 
         }
-// const API_ENDPOINT = `${API_URL}/getLiked/${user_id}`;
-const GetData ={
-    axios.get(`${process.env.REACT_APP_API_URL}/getLiked/${user_id}`).then((res) => 
-    
-    {console.log(res);          
-    this.setState({
-        likedPosts: res.data,           
-    });
-  })
-    // axios.get(`${API_ENDPOINT}`).then((res) => {
-    //     console.log(res.data);
-    //     this.setState({
-    //         likedPosts = res.data,
-    //     });
+    }
+    editComment = (item) => {
+        this.setState({
+            showCommentEdit: true,
+            obj: item,
+        })
 
-    // })
-};
-};
-// title, imgUrl, description, comment
-render() {
-     const Post = this.state.likedPosts.map((item,index) => {
-    return (
-        <div key={index} >
-           
+    }
+   
+    closemodal = () => {
+        this.setState({
+            showCommentEdit: false,
 
-        <Card style={{ width: '18rem', }}>
-            <Card.Img variant="top" src={item.imgUrl}/>
+        })
+    }
+    render() {
 
-            <Card.Body>
-                <Card.Title>Title:  {item.title}</Card.Title>
-                <Card.Text>
-                
-                    {item.description} <br/>
-                    {item.comment} 
-                    
-                    
-                </Card.Text>
-                <Button onClick={this.editComment}> Edit Comment !!</Button>
-            </Card.Body>
-        </Card>
-    
-   </div>
-        
-           
-    );})
+        return (
+            <>
+
+                <Row md='4' >
+                    {this.state.likedPosts.map((item, idx) => {
+                        return (
+                            <div key={idx} >
+
+
+                                <Card style={{ width: '18rem', }}>
+                                    <Card.Img variant="top" src={item.imgUrl} />
+
+                                    <Card.Body>
+                                        <Card.Title>Title:  {item.title}</Card.Title>
+                                        <Card.Text>
+
+                                            {item.description} <br />
+                                            {item.comment}
+                                            <br />
+                                            <Button variant="primary" type="submit" onClick={() => { this.editComment(item) }}>
+                                                Update Comment
+                                            </Button>
+
+
+
+                                        </Card.Text>
+
+                                    </Card.Body>
+                                </Card>
+
+
+                            </div>
+                        )
+                    })
+                    }
+
+                </Row >
+                {this.state.showCommentEdit &&
+                    < Editcommentmodal
+                        showCommentEdit={this.state.showCommentEdit}
+                        closemodal={this.closemodal}
+                        obj={this.state.obj}
+                    />
+                }
+            </>
+        );
+    }
 }
-}
+
 
 export default LikedPost;
