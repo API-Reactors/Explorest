@@ -3,6 +3,8 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 
 class SignUpForm extends React.Component {
+
+
   handleSignIn = (e) => {
     e.preventDefault();
     console.log(e.target.userName.value);
@@ -14,6 +16,8 @@ class SignUpForm extends React.Component {
     };
     axios.post("http://localhost:8080/register", reqBody).then((foundUser) => {
       console.log(foundUser);
+      alert(foundUser.data.message);
+     
     });
   };
 
@@ -52,7 +56,7 @@ class SignUpForm extends React.Component {
           />
         </Form.Group>
         <Button variant="primary" type="submit">
-          Submit
+          Register
         </Button>
       </Form>
     );
