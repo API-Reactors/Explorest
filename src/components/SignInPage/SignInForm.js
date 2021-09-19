@@ -4,18 +4,10 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 class SignInForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      userName: "",
-    };
-  }
   
   handleSignIn = (e) => {
     e.preventDefault();
-    console.log(e.target.userName.value);
+    // console.log(e.target.userName.value);
     const reqBody = {
       userName: e.target.userName.value,
       password: e.target.password.value,
@@ -27,6 +19,12 @@ class SignInForm extends React.Component {
       this.props.history.push("/");
     });
   };
+
+  handleClick = () => {
+    this.props.history.push("/register");
+}
+
+
   render() {
     return (
       <Form onSubmit={this.handleSignIn}>
@@ -46,7 +44,8 @@ class SignInForm extends React.Component {
         <Button variant="primary" type="submit">
           Sign In
         </Button>
-        <Button variant="primary">
+        <br/>
+        <Button variant="primary" onClick={this.handleClick}>
           Sign Up
         </Button>
       </Form>
