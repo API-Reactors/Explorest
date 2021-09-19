@@ -9,34 +9,41 @@ class UserMainPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: this.props.user,
       test: [],
     };
   }
 
   componentDidMount = () => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/test`)
-      .then((testResponse) => {
-        this.setState({ test: testResponse.data });
+      .get(`http://localhost:8080/main/${this.props.user.userName}`)
+      .then((foundItem) => {
+        this.setState({ test: foundItem.data });
       })
       .catch((error) => alert(error.message));
+  };
+
+  handleClick = () => {
+    this.props.setLogoutUser();
   };
 
   render() {
     return (
       <div>
+        <Button variant="primary" onClick={this.handleClick}>
+          Sign Up
+        </Button>
+
         {this.state.test.length > 0 && (
           <>
             {this.state.test.map((value) => {
               return (
                 <>
-                  <Card
-                    style={{ width: "18rem" }}
-                  >
+                  <Card style={{ width: "18rem", display: "inline-block" }}>
                     <Card.Img variant="top" src={value.img} />
                     <Card.Body>
                       <Card.Title>{value.title}</Card.Title>
-                      <Card.Text> {value.description} </Card.Text>
+                      {/* <Card.Text> {value.description} </Card.Text> */}
                       <Button>test </Button>
                     </Card.Body>
                   </Card>

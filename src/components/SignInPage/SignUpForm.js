@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 class SignUpForm extends React.Component {
 
@@ -17,8 +18,8 @@ class SignUpForm extends React.Component {
     axios.post("http://localhost:8080/register", reqBody).then((foundUser) => {
       console.log(foundUser);
       alert(foundUser.data.message);
-     
     });
+    this.props.history.push("/intrest");
   };
 
   render() {
@@ -62,4 +63,4 @@ class SignUpForm extends React.Component {
     );
   }
 }
-export default SignUpForm;
+export default withRouter(SignUpForm);
