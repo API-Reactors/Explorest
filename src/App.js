@@ -11,16 +11,15 @@ import Profile from "./components/UserPage/Profile";
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);   
-    this.state = {
-      user: {},
-      userData: ''
+  constructor(props){
+    super(props);
+    this.state={
+      user:'',
+      userData:''
     }
   }
 
-  setLoginUser =(user) => {
-
+  setLoginUser = (user)=>{
     localStorage.setItem("user", JSON.stringify(user));
     const userParsed = JSON.parse(localStorage.getItem("user"));
     const userY = userParsed;

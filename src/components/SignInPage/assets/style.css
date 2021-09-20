@@ -1,0 +1,15 @@
+.logo{
+    width: 190px;
+    margin-left:30px;
+}
+.navBar{
+    margin-left: 900px ;
+    font-weight: bold;
+}
+.navBtn {
+border-radius:50px;
+font-weight: bold;
+}
+.loginForm{
+    text-align: center;
+}

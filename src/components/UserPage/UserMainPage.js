@@ -3,7 +3,10 @@ import React from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import { Button, Row } from "react-bootstrap";
+import Masonry from "react-masonry-css";
+import { findByDisplayValue } from "@testing-library/dom";
+import IntrestForm from "../SignInPage/IntrestForm";
 
 class UserMainPage extends React.Component {
   constructor(props) {
@@ -11,6 +14,11 @@ class UserMainPage extends React.Component {
     this.state = {
       user: this.props.user,
       test: [],
+    };
+    this.breakpoints = {
+      default:5,
+      1100:4,
+      700:3
     };
   }
 
@@ -30,28 +38,31 @@ class UserMainPage extends React.Component {
   render() {
     return (
       <div>
+        
         <Button variant="primary" onClick={this.handleClick}>
           Sign Up
         </Button>
-
-        {this.state.test.length > 0 && (
-          <>
-            {this.state.test.map((value) => {
-              return (
-                <>
-                  <Card style={{ width: "18rem", display: "inline-block" }}>
-                    <Card.Img variant="top" src={value.img} />
-                    <Card.Body>
-                      <Card.Title>{value.title}</Card.Title>
-                      {/* <Card.Text> {value.description} </Card.Text> */}
-                      <Button>test </Button>
-                    </Card.Body>
-                  </Card>
-                </>
-              );
-            })}
-          </>
-        )}
+          {  this.state.user.intrests.length > 0 ?
+             <Masonry
+             breakpointCols={this.breakpoints}
+             className="my-masonry-grid"
+             columnClassName="my-masonry-grid_column"
+           >
+              {this.state.test.map((value) => {
+                return (
+                    <div style={{ width: "18rem" }}>
+                      <Card.Img variant="top" src={value.img} />
+                      <Card.Body>
+                        <Card.Title>{value.title}</Card.Title>
+                        {/* <Card.Text> {value.description} </Card.Text> */}
+                        <Button>test </Button>
+                      </Card.Body>
+                    </div>
+                );
+              })}
+            </Masonry> : <IntrestForm />
+          }
+        
       </div>
     );
   }

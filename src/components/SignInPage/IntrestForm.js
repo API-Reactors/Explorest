@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Button } from "react-bootstrap";
 import axios from 'axios';
+import { withRouter } from "react-router-dom";
 
 class IntrestForm extends React.Component {
   constructor(props) {
@@ -26,8 +27,10 @@ class IntrestForm extends React.Component {
     let reqBody = this.state.allIntrestsArray
 
 
-    axios.put(`http://localhost:8080/addIntrests/${testUser._id}`, reqBody)
-    console.log(testUser._id);
+    axios.put(`http://localhost:8080/addIntrests/${testUser._id}`, reqBody).then(()=>{
+      console.log(testUser._id);
+    });
+    this.props.history.push("/");
   }
   render() {
     return (<>
@@ -104,4 +107,4 @@ class IntrestForm extends React.Component {
 }
 
 
-export default IntrestForm;
+export default withRouter(IntrestForm);
