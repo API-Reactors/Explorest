@@ -68,6 +68,7 @@ class App extends React.Component {
               <Profile
                 setLoginUser={this.setLoginUser}
                 user={this.state.user}
+                setLogoutUser={this.setLogoutUser}
               />
             </Route>
           </Switch>

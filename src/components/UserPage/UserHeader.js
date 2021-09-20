@@ -8,11 +8,9 @@ import logo from "../assets/logo6.png";
 import "../assets/style.css";
 
 class Header extends React.Component {
-  handleShowSignIn = () => {
-    this.props.handleShowSignIn();
-  };
-  handleShowSignUp = () => {
-    this.props.handleShowSignUp();
+
+  handleLogOut = () => {
+    this.props.handleLogout();
   };
 
   render() {
@@ -29,21 +27,12 @@ class Header extends React.Component {
             </Nav.Link>
             <Nav.Link
               style={{ padding: "0 15px 0 8px", color: "black" }}
-              href="/about"
+              href="/profile"
             >
-              About
+              Profile
             </Nav.Link>
-            <Button
-              variant="danger"
-              style={{
-                borderRadius: "50px",
-                fontWeight: "bold",
-                margin: "0 5px",
-              }}
-              onClick={this.handleShowSignIn}
-            >
-              Log In
-            </Button>
+
+    
             <Button
               variant="light"
               style={{
@@ -51,9 +40,9 @@ class Header extends React.Component {
                 fontWeight: "bold",
                 margin: "0 5px",
               }}
-              onClick={this.handleShowSignUp}
+              onClick={this.handleLogOut}
             >
-              Sign Up
+              Logout
             </Button>
           </Navbar.Collapse>
         </Navbar>
