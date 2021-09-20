@@ -3,7 +3,8 @@ import React from 'react';
 import LikedPost from "./liked.post.js"
 import Intrest from "./Intrest.js"
 // import axios from 'axios';
-
+import Header from "./UserHeader";
+import { withRouter } from "react-router-dom";
 
 class Profile extends React.Component {
 
@@ -14,12 +15,16 @@ class Profile extends React.Component {
         }
 
     }
-
+    setLogoutUser = () => {
+        this.props.setLogoutUser();
+    this.props.history.push("/")
+      }
 
     render() {
         return (
             <div>
-
+<Header
+handleLogout={this.setLogoutUser}/>
 
                 <h1>{this.state.user.fullName}</h1>
 
@@ -44,6 +49,6 @@ class Profile extends React.Component {
 
 
 }
-export default Profile;
+export default withRouter(Profile);
 
 

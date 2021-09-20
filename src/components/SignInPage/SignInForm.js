@@ -3,7 +3,7 @@ import { Form, Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import Header from "./Header";
-import logo from "./assets/logo.png";
+import logo from "../assets/logo.png";
 
 class SignInForm extends React.Component {
   constructor(props) {
