@@ -13,8 +13,10 @@ class App extends React.Component {
 
   constructor(props){
     super(props);
+    const userParsed = JSON.parse(localStorage.getItem("user"));
+    const userY = userParsed;
     this.state={
-      user:'',
+      user:userY,
       userData:''
     }
   }

@@ -3,6 +3,7 @@ import { Form, Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import Header from "./Header";
+import logo from "./assets/logo.png";
 
 class SignInForm extends React.Component {
   constructor(props) {
@@ -43,9 +44,8 @@ class SignInForm extends React.Component {
       console.log(foundUser.data);
       alert(foundUser.data.message);
       this.props.setLoginUser(foundUser.data.user);
-      
     });
-   this.props.history.push("/");
+    this.props.history.push("/");
   };
   handleSignUp = (e) => {
     e.preventDefault();
@@ -60,53 +60,99 @@ class SignInForm extends React.Component {
       console.log(foundUser);
       alert(foundUser.data.message);
     });
-    this.props.history.push("/intrest");
+    this.handleShowSignUp();
   };
 
   handleClick = () => {
-    this.props.history.push("/register");
+    this.setState({
+      showSignUp: true,
+      showSignIn: false,
+    });
   };
 
   render() {
     return (
       <>
-        <Header handleShowSignIn={this.handleShowSignIn} handleShowSignUp={this.handleShowSignUp} />
+        <Header
+          handleShowSignIn={this.handleShowSignIn}
+          handleShowSignUp={this.handleShowSignUp}
+        />
 
         <Modal
           aria-labelledby="contained-modal-title-vcenter"
           centered
           show={this.state.showSignIn}
         >
-          <Modal.Header closeButton onClick={this.handleCloseSignIn}>
-            <Modal.Title>Welcome To Explorest</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form className="loginForm" onSubmit={this.handleSignIn}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control
-                  className="loginForm"
-                  type="text"
-                  name="userName"
-                  placeholder="Enter email or User Name"
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Control
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Sign In
-              </Button>
-              <br />
-              <Button variant="primary" onClick={this.handleClick}>
-                Sign Up
-              </Button>
-            </Form>
-          </Modal.Body>
+          <Modal.Header
+            closeButton
+            onClick={this.handleCloseSignIn}
+            style={{
+              border: "0px",
+            }}
+          ></Modal.Header>
+          <div
+            style={{
+              padding: "0px 70px 60px",
+            }}
+          >
+            <Modal.Title
+              style={{
+                textAlign: "center",
+                padding:"0 0 20px"
+              }}
+            >
+              <img src={logo} style={{width:"4em"}}/>
+              <br/>
+              <h2 style={{fontWeight:"700"}}>Welcome To Explorest</h2>
+            </Modal.Title>
+            <Modal.Body>
+              <Form className="loginForm" onSubmit={this.handleSignIn}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Control
+                    type="text"
+                    name="userName"
+                    placeholder="Enter email or User Name"
+                    style={{height:"3em"}}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    style={{height:"3em", marginBottom:"30px"}}
+                  />
+                </Form.Group>
+                <Button
+                  variant="danger"
+                  type="submit"
+                  style={{
+                    width: "15em",
+                    borderRadius: "5em",
+                    fontSize: "20px",
+                   
+                  }}
+                >
+                  Sign In
+                </Button>
+                <br />
+                Or
+                <br />
+                <Button
+                  variant="primary"
+                  style={{
+                    width: "15em",
+                    borderRadius: "5em",
+                    fontSize: "20px",
+                   
+                  }}
+                  onClick={this.handleClick}
+                >
+                  Sign Up
+                </Button>
+              </Form>
+            </Modal.Body>
+          </div>
         </Modal>
 
         <Modal
@@ -114,9 +160,28 @@ class SignInForm extends React.Component {
           centered
           show={this.state.showSignUp}
         >
-          <Modal.Header closeButton onClick={this.handleCloseSignUp}>
-            <Modal.Title>Welcome To Explorest</Modal.Title>
-          </Modal.Header>
+          <Modal.Header
+            closeButton
+            onClick={this.handleCloseSignUp}
+            style={{
+              border: "0px",
+            }}
+          ></Modal.Header>
+          <div
+            style={{
+              padding: "0px 70px 60px",
+            }}
+          >
+            <Modal.Title
+              style={{
+                textAlign: "center",
+                padding:"0 0 20px"
+              }}
+            >
+              <img src={logo} style={{width:"4em"}}/>
+              <br/>
+              <h2 style={{fontWeight:"700"}}>Welcome To Explorest</h2>
+            </Modal.Title>
           <Modal.Body>
             <Form onSubmit={this.handleSignUp}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -154,11 +219,19 @@ class SignInForm extends React.Component {
                   placeholder="Password"
                 />
               </Form.Group>
-              <Button variant="primary" type="submit">
+              <Button variant="primary"
+                  style={{
+                    width: "15em",
+                    borderRadius: "5em",
+                    fontSize: "20px",
+                    marginTop:"20px"
+                   
+                  }}>
                 Register
               </Button>
             </Form>
           </Modal.Body>
+          </div>
         </Modal>
       </>
     );
