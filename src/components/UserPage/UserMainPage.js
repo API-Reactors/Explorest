@@ -9,12 +9,15 @@ import { findByDisplayValue } from "@testing-library/dom";
 import IntrestForm from "../SignInPage/IntrestForm";
 import CardModule from "./CardModule";
 import Header from "./UserHeader";
+import Intrest from "./Intrest.js"
+
 class UserMainPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       user: this.props.user,
       show: false,
+      showIntrestEdit:false,
       content: '',
       test: [],
     };
@@ -46,7 +49,7 @@ class UserMainPage extends React.Component {
   closemodal = () => {
     this.setState({
       show: false,
-
+      showIntrestEdit:false,
     })
   }
 
@@ -54,17 +57,26 @@ class UserMainPage extends React.Component {
     this.props.setLogoutUser();
 
   }
+  handleIntrestsModule = () => {
+    this.setState({
+      showIntrestEdit: true,
+
+    })
+
+  }
+
 
   render() {
     return (
       <div>
         <Header
           handleLogout={this.setLogoutUser}
+          handleIntrestsModule={this.handleIntrestsModule}
         />
         <div style={{ margin: "20px 70px" }}>
           {this.state.test.length === 0 && (<div class="d-flex justify-content-center">
-<div  style={{ textAlign: "center" ,margin: "0px auto" }} class="spinner-grow text-danger" role="status">
-          </div>
+            <div style={{ textAlign: "center", margin: "0px auto" }} class="spinner-grow text-danger" role="status">
+            </div>
           </div>)}
           {this.state.user.intrests.length > 0 ?
 
@@ -97,6 +109,10 @@ class UserMainPage extends React.Component {
             </>
             : <IntrestForm />
           }
+          <Intrest
+                showIntrestEdit={this.state.showIntrestEdit}
+                closemodal={this.closemodal}
+                />
         </div>
 
       </div>

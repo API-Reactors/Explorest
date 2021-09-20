@@ -11,20 +11,38 @@ class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            showIntrestEdit: false,
             user: JSON.parse(localStorage.getItem("user"))
+            
         }
 
     }
     setLogoutUser = () => {
         this.props.setLogoutUser();
-    this.props.history.push("/")
-      }
+        this.props.history.push("/")
+    }
+    closemodal = () => {
+        this.setState({
+            showIntrestEdit: false,
+            user: JSON.parse(localStorage.getItem("user")),
+
+        })
+    }
+    handleIntrestsModule= () => {
+        this.setState({
+            showIntrestEdit: true,
+            
+        })
+       
+    }
 
     render() {
         return (
             <div>
-<Header
-handleLogout={this.setLogoutUser}/>
+                <Header
+                    handleLogout={this.setLogoutUser} 
+                    handleIntrestsModule={this.handleIntrestsModule}
+                    />
 
                 <h1>{this.state.user.fullName}</h1>
 
@@ -40,7 +58,10 @@ handleLogout={this.setLogoutUser}/>
                     user={this.state.user}
                     setLoginUser={this.props.setLoginUser}
                 />
-                <Intrest/>
+                <Intrest
+                showIntrestEdit={this.state.showIntrestEdit}
+                closemodal={this.closemodal}
+                />
             </div>
 
 

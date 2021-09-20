@@ -11,7 +11,7 @@ export class Editcommentmodal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showw:true
+           
         };
     }
 
@@ -29,7 +29,7 @@ export class Editcommentmodal extends Component {
 
         this.setState({
             newuser: res.data,
-            showw:false
+           
         })
         this.props.closemodal()
    
