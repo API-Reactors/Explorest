@@ -4,6 +4,10 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Footer from "../SignInPage/Footer";
+import "./UserMainPage.css";
+
+
 
 class UserMainPage extends React.Component {
   constructor(props) {
@@ -39,11 +43,14 @@ class UserMainPage extends React.Component {
             {this.state.test.map((value) => {
               return (
                 <>
-                  <Card style={{ width: "18rem", display: "inline-block" }}>
+                  <Card
+                    class="title-card"
+                    style={{ width: "18rem", display: "inline-block" }}
+                  >
                     <Card.Img variant="top" src={value.img} />
                     <Card.Body>
                       <Card.Title>{value.title}</Card.Title>
-                      {/* <Card.Text> {value.description} </Card.Text> */}
+
                       <Button>test </Button>
                     </Card.Body>
                   </Card>
@@ -52,6 +59,8 @@ class UserMainPage extends React.Component {
             })}
           </>
         )}
+       
+        <Footer />
       </div>
     );
   }

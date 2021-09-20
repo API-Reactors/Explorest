@@ -7,6 +7,8 @@ import HomePage from "./components/UserPage/HomePage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserMainPage from './components/UserPage/UserMainPage';
 import Profile from "./components/UserPage/Profile";
+import AboutUs from "./components/SignInPage/AboutUs";
+
 
 
 class App extends React.Component {
@@ -60,6 +62,9 @@ class App extends React.Component {
           </Route>
           <Route path="/intrest">
             <IntrestForm />
+          </Route>
+          <Route path="/aboutus">
+            <AboutUs />
           </Route>
         </Switch>
       </Router>
