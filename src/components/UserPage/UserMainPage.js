@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import { Button, Row } from "react-bootstrap";
 import Masonry from "react-masonry-css";
 import { findByDisplayValue } from "@testing-library/dom";
+import IntrestForm from "../SignInPage/IntrestForm";
 
 class UserMainPage extends React.Component {
   constructor(props) {
@@ -37,12 +38,11 @@ class UserMainPage extends React.Component {
   render() {
     return (
       <div>
+        
         <Button variant="primary" onClick={this.handleClick}>
           Sign Up
         </Button>
-
-       
-          {this.state.test.length > 0 && (
+          {  this.state.user.intrests.length > 0 ?
              <Masonry
              breakpointCols={this.breakpoints}
              className="my-masonry-grid"
@@ -60,8 +60,8 @@ class UserMainPage extends React.Component {
                     </div>
                 );
               })}
-            </Masonry>
-          )}
+            </Masonry> : <IntrestForm />
+          }
         
       </div>
     );
