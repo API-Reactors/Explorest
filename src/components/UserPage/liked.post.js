@@ -5,7 +5,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
-
+import axios from 'axios';
 
 import Editcommentmodal from "./Editcommentmodal"
 class LikedPost extends React.Component {
@@ -14,7 +14,7 @@ class LikedPost extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            likedPosts: [{ title: "hi", imgUrl: "https://avatars.githubusercontent.com/u/85199984?v=4", description: "abdijd", comment: "gg" }, { title: "hi", imgUrl: "https://avatars.githubusercontent.com/u/85199984?v=4", description: "abdijd", comment: "" }],
+            likedPosts: this.props.user.likes,
             showCommentEdit: false,
             obj: {}
 
@@ -24,10 +24,28 @@ class LikedPost extends React.Component {
         this.setState({
             showCommentEdit: true,
             obj: item,
+            newuser:[],
         })
 
     }
-   
+    updatecomment = async (e) => {
+        e.preventDefault()
+
+        const reqBody = {
+            title: this.props.obj.title,
+            newcomment: e.target.newComment.value
+        }
+        console.log(e.target.newComment.value);
+
+        let res = await axios.put(`http://localhost:8080/updateLike/${this.props.user._id}`, reqBody)
+
+        console.log(res.data);
+        this.setState({
+            newuser: res.data
+        });
+        this.closemodal()
+        this.props.setLoginUser(this.state.newuser)
+    }
     closemodal = () => {
         this.setState({
             showCommentEdit: false,
@@ -75,9 +93,12 @@ class LikedPost extends React.Component {
                 </Row >
                 {this.state.showCommentEdit &&
                     < Editcommentmodal
+                        user={this.props.user}
                         showCommentEdit={this.state.showCommentEdit}
                         closemodal={this.closemodal}
                         obj={this.state.obj}
+                        updatecomment={this.updatecomment}
+                        setLoginUser={this.props.setLoginUser}
                     />
                 }
             </>

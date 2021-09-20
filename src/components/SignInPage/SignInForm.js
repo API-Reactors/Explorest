@@ -13,11 +13,12 @@ class SignInForm extends React.Component {
       password: e.target.password.value,
     };
     axios.post("http://localhost:8080/signIn", reqBody).then((foundUser) => {
-      console.log(foundUser);
+      console.log(foundUser.data);
       alert(foundUser.data.message);
       this.props.setLoginUser(foundUser.data.user);
-      this.props.history.push("/");
+      
     });
+   this.props.history.push("/");
   };
 
   handleClick = () => {
@@ -29,7 +30,7 @@ class SignInForm extends React.Component {
     return (
       <Form onSubmit={this.handleSignIn}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>userName</Form.Label>
           <Form.Control type="text" name="userName" placeholder="Enter email" />
         </Form.Group>
 
