@@ -49,11 +49,16 @@ class UserMainPage extends React.Component {
     })
 }
 
+setLogoutUser =()=>{
+this.props.setLogoutUser();
+
+}
+
   render() {
     return (
       <div>
         
-        <Button variant="primary" >
+        <Button variant="primary" onClick={this.props.setLogoutUser}>
           Log out
         </Button>
           {  this.state.user.intrests.length > 0 ?
