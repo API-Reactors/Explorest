@@ -40,11 +40,12 @@ class SignInForm extends React.Component {
       password: e.target.password.value,
     };
     axios.post("http://localhost:8080/signIn", reqBody).then((foundUser) => {
-      console.log(foundUser);
+      console.log(foundUser.data);
       alert(foundUser.data.message);
       this.props.setLoginUser(foundUser.data.user);
-      this.props.history.push("/");
+      
     });
+   this.props.history.push("/");
   };
   handleSignUp = (e) => {
     e.preventDefault();

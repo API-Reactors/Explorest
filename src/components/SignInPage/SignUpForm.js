@@ -18,7 +18,10 @@ class SignUpForm extends React.Component {
     axios.post("http://localhost:8080/register", reqBody).then((foundUser) => {
       console.log(foundUser);
       alert(foundUser.data.message);
+      console.log(foundUser.data.user);
+      this.props.setLoginUser(foundUser.data.user);
     });
+    
     this.props.history.push("/intrest");
   };
 

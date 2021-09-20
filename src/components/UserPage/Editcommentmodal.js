@@ -10,11 +10,11 @@ export class Editcommentmodal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            newuser: {},
         };
     }
 
-    updatecomment = (e) => {
+    updatecomment = async (e) => {
         e.preventDefault()
 
         const reqBody = {
@@ -23,18 +23,14 @@ export class Editcommentmodal extends Component {
         }
         console.log(e.target.newComment.value);
 
-        axios
-            .put(`${process.env.REACT_APP_API_URL}/updateLike/${this.props.User._id}`
-            ,
-            reqBody
-            )
-            .then((res) => {
-                console.log(res);
-                this.setState({
-                    showUpdateModal: false,
-                });
-            })
+        let res = await axios.put(`http://localhost:8080/updateLike/${this.props.user._id}`, reqBody)
+
+        console.log(res.data);
+        this.setState({
+            newuser: res.data
+        });
         this.props.closemodal()
+        this.props.setLoginUser(this.state.newuser)
     }
 
     render() {
@@ -50,7 +46,7 @@ export class Editcommentmodal extends Component {
                 </Modal.Header>
                 <Modal.Body>
 
-                    <Form onSubmit={this.updatecomment}>
+                    <Form onSubmit={this.props.updatecomment}>
                         <Form.Group className="mb-3">
                             <Form.Label>New Comment</Form.Label>
                             <Form.Control
