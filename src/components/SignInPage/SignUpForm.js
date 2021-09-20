@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 class SignUpForm extends React.Component {
 
 
-  handleSignIn = (e) => {
+  handleSignOut = (e) => {
     e.preventDefault();
     console.log(e.target.userName.value);
     const reqBody = {
@@ -24,7 +24,7 @@ class SignUpForm extends React.Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleSignIn}>
+      <Form onSubmit={this.handleSignOut}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>User Name</Form.Label>
           <Form.Control
