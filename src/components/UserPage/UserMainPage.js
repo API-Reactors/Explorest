@@ -7,12 +7,14 @@ import { Button, Row } from "react-bootstrap";
 import Masonry from "react-masonry-css";
 import { findByDisplayValue } from "@testing-library/dom";
 import IntrestForm from "../SignInPage/IntrestForm";
-
+import CardModule from "./CardModule";
 class UserMainPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       user: this.props.user,
+      show:false,
+      content: '',
       test: [],
     };
     this.breakpoints = {
@@ -34,33 +36,53 @@ class UserMainPage extends React.Component {
   handleClick = () => {
     this.props.setLogoutUser();
   };
+  handleopen = (value)=>{
+    this.setState({
+      show:true,
+      content:value
+    })
+  }
+  closemodal = () => {
+    this.setState({
+        show: false,
+
+    })
+}
 
   render() {
     return (
       <div>
         
-        <Button variant="primary" onClick={this.handleClick}>
-          Sign Up
+        <Button variant="primary" >
+          Log out
         </Button>
           {  this.state.user.intrests.length > 0 ?
-             <Masonry
+          <>
+             <Masonry 
              breakpointCols={this.breakpoints}
              className="my-masonry-grid"
              columnClassName="my-masonry-grid_column"
            >
               {this.state.test.map((value) => {
                 return (
-                    <div style={{ width: "18rem" }}>
+                    <Card style={{ width: "18rem" }} onClick={() => {this.handleopen(value)}}>
                       <Card.Img variant="top" src={value.img} />
                       <Card.Body>
                         <Card.Title>{value.title}</Card.Title>
                         {/* <Card.Text> {value.description} </Card.Text> */}
-                        <Button>test </Button>
                       </Card.Body>
-                    </div>
+                    </Card>
                 );
               })}
-            </Masonry> : <IntrestForm />
+            </Masonry> 
+            <CardModule
+            show={this.state.show}
+            content={this.state.content}
+            closemodal={this.closemodal}
+            user={this.state.user}
+            />
+            </>
+            : <IntrestForm />
           }
         
       </div>

@@ -16,7 +16,8 @@ class LikedPost extends React.Component {
         this.state = {
             likedPosts: this.props.user.likes,
             showCommentEdit: false,
-            obj: {}
+            obj: {},
+            user: JSON.parse(localStorage.getItem("user")),
 
         }
     }
@@ -24,41 +25,41 @@ class LikedPost extends React.Component {
         this.setState({
             showCommentEdit: true,
             obj: item,
-            newuser:[],
+          
         })
 
     }
-    updatecomment = async (e) => {
-        e.preventDefault()
 
-        const reqBody = {
-            title: this.props.obj.title,
-            newcomment: e.target.newComment.value
-        }
-        console.log(e.target.newComment.value);
-
-        let res = await axios.put(`http://localhost:8080/updateLike/${this.props.user._id}`, reqBody)
-
-        console.log(res.data);
-        this.setState({
-            newuser: res.data
-        });
-        this.closemodal()
-        this.props.setLoginUser(this.state.newuser)
-    }
     closemodal = () => {
         this.setState({
             showCommentEdit: false,
+            user: JSON.parse(localStorage.getItem("user")),
 
         })
     }
+
+
+    deleteFavorite = async (item) => {
+        console.log(item);
+        const reqBody={title:item.title}
+        let res = await axios.put(`http://localhost:8080/deleteLike/${this.state.user._id}`, reqBody)
+        localStorage.setItem("user", JSON.stringify(res.data));
+        this.setState({
+                user: JSON.parse(localStorage.getItem("user")),
+        })
+    }
+
+
+
+
+
     render() {
 
         return (
             <>
 
                 <Row md='4' >
-                    {this.state.likedPosts.map((item, idx) => {
+                    {this.state.user.likes.map((item, idx) => {
                         return (
                             <div key={idx} >
 
@@ -71,13 +72,16 @@ class LikedPost extends React.Component {
                                         <Card.Text>
 
                                             {item.description} <br />
-                                            {item.comment}
                                             <br />
+                                            <b>Your Note:  {item.comment}</b>
+
                                             <Button variant="primary" type="submit" onClick={() => { this.editComment(item) }}>
-                                                Update Comment
+                                                Update Note
                                             </Button>
 
-
+                                            <Button variant="secondary" type="submit" onClick={() => { this.deleteFavorite(item) }}>
+                                                Remove
+                                            </Button>
 
                                         </Card.Text>
 
@@ -93,7 +97,7 @@ class LikedPost extends React.Component {
                 </Row >
                 {this.state.showCommentEdit &&
                     < Editcommentmodal
-                        user={this.props.user}
+                        user={this.state.user}
                         showCommentEdit={this.state.showCommentEdit}
                         closemodal={this.closemodal}
                         obj={this.state.obj}
