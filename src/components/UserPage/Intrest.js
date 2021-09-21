@@ -8,6 +8,7 @@ class Intrest extends React.Component {
     super(props);
     this.state = {
       allIntrestsArray: [],
+      user:JSON.parse(localStorage.getItem("user"))
     };
   }
   handleIntrest = async (e) => {
@@ -27,11 +28,14 @@ class Intrest extends React.Component {
 
     axios
       .put(`http://localhost:8080/addIntrests/${testUser._id}`, reqBody)
-      .then(() => {
-        console.log(testUser._id);
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        this.props.closemodal();
       });
-    this.props.closemodal();
-    alert("Intrests had been updated");
+      
+  
+   
   };
   render() {
     return (
