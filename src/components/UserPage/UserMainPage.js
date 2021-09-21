@@ -90,6 +90,7 @@ class UserMainPage extends React.Component {
           handleSearch={this.handleSearch}
         />
         <div style={{ margin: "20px 70px" }}>
+
           {this.state.test.length === 0 && (<div class="d-flex justify-content-center">
             <div style={{ textAlign: "center", margin: "0px auto" }} class="spinner-grow text-danger" role="status">
             </div>
@@ -127,6 +128,7 @@ class UserMainPage extends React.Component {
                 </>
                 : <IntrestForm />
               }
+
             </>
           }
 
