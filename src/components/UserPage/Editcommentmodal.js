@@ -24,7 +24,7 @@ export class Editcommentmodal extends Component {
         }
 
 
-        let res = await axios.put(`http://localhost:8080/updateLike/${this.props.user._id}`, reqBody)
+        let res = await axios.put(`${process.env.REACT_APP_API_URL}/updateLike/${this.props.user._id}`, reqBody)
         localStorage.setItem("user", JSON.stringify(res.data));
 
         this.setState({

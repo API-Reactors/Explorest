@@ -43,14 +43,13 @@ class SignInForm extends React.Component {
   };
   handleSignIn = (e) => {
     e.preventDefault();
-    // console.log(e.target.userName.value);
     const reqBody = {
       userName: e.target.userName.value,
       password: e.target.password.value,
     };
-    axios.post("http://localhost:8080/signIn", reqBody).then((foundUser) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/signIn`, reqBody).then((foundUser) => {
       console.log(foundUser.data);
-      alert(foundUser.data.message);
+      // alert(foundUser.data.message);
       this.props.setLoginUser(foundUser.data.user);
     });
     this.props.history.push("/");
@@ -64,9 +63,9 @@ class SignInForm extends React.Component {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    axios.post("http://localhost:8080/register", reqBody).then((foundUser) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/register`, reqBody).then((foundUser) => {
       console.log(foundUser);
-      alert(foundUser.data.message);
+      // alert(foundUser.data.message);
     });
     this.handleShowSignIn();
     this.handleCloseSignUp();

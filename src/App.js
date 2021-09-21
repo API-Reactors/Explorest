@@ -38,18 +38,7 @@ class App extends React.Component {
       user: {}
     });
   }
-  // handleSearch = async (e) => {
-  //   
-  //   await this.setState({
-  //     searchQuery: e.target.query.value
-  //   })
-  //   console.log(this.state.searchQuery);
-  //   const seaching = await axios.get(`https://pixabay.com/api/?key=23439126-48e6990e9f2a6b0eef8dd8f7e&q=${this.state.searchQuery}&image_type=photo&safesearch=true`)
-  //   await this.setState({
-  //     searchresults: seaching.data.hits
-  //   })
-    
-  // }
+ 
 
   render() {
 

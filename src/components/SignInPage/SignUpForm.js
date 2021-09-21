@@ -15,7 +15,7 @@ class SignUpForm extends React.Component {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    axios.post("http://localhost:8080/register", reqBody).then((foundUser) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/register`, reqBody).then((foundUser) => {
       console.log(foundUser);
       alert(foundUser.data.message);
       console.log(foundUser.data.user);
