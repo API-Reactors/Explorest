@@ -4,6 +4,7 @@ import Intrest from "./Intrest.js";
 // import axios from 'axios';
 import Header from "./UserHeader";
 import { withRouter } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class Profile extends React.Component {
             src="https://sothis.es/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
           />
           <h1>{this.state.user.fullName}</h1>
-          <h3>Email:{this.state.user.email}</h3>
+          <h3>{this.state.user.email}</h3>
 
           <LikedPost
             user={this.state.user}
