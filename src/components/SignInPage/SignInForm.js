@@ -265,7 +265,7 @@ class SignInForm extends React.Component {
                 {foodImg.map((img, i) => {
                   return (
                     <img
-                      className={`foodImg-${i}`}
+                      className={`foodImg foodImg-${i}`}
                       style={{ width: "13rem", marginBottom: "20px" }}
                       src={img}
                     />
@@ -289,7 +289,7 @@ class SignInForm extends React.Component {
                 {artImg.map((img, i) => {
                   return (
                     <img
-                      className={`foodImg-${i}`}
+                      className={`foodImg foodImg-${i}`}
                       style={{ width: "13rem", marginBottom: "20px" }}
                       src={img}
                     />
@@ -313,7 +313,7 @@ class SignInForm extends React.Component {
                 {foodImg.map((img, i) => {
                   return (
                     <img
-                      className={`foodImg-${i}`}
+                      className={`foodImg foodImg-${i}`}
                       style={{ width: "13rem", marginBottom: "20px" }}
                       src={img}
                     />

@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import axios from "axios";
+import logo from "../assets/logo.png";
 
 import Editcommentmodal from "./Editcommentmodal";
 class LikedPost extends React.Component {
@@ -51,7 +52,7 @@ class LikedPost extends React.Component {
 
   render() {
     return (
-      <>
+      <div style={{ margin: "90px 80px", textAlign: "left" }}>
         <Masonry
           breakpointCols={this.breakpoints}
           className="my-masonry-grid"
@@ -60,34 +61,68 @@ class LikedPost extends React.Component {
           {this.state.user.likes.map((item, idx) => {
             return (
               <div key={idx}>
-                <Card style={{ width: "16rem" }}>
-                  <Card.Img variant="top" src={item.imgUrl} />
+                <Card style={{ width: "15rem", border: "0" }}>
+                  <Card.Img
+                    variant="top"
+                    src={item.imgUrl}
+                    style={{
+                      borderRadius: "1.2em",
+                      boxShadow:
+                        " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                    }}
+                    onClick={() => {
+                        this.editComment(item);}}
+                  />
 
-                  <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
+                  <Card.Body style={{ padding: "0.3rem .1rem" }}>
+                    <button
+                      variant="light"
+                      type="submit"
+                      onClick={() => {
+                        this.editComment(item);
+                      }}
+                      style={{
+                        backgroundColor: "#ffffff00",
+                        border: "0",
+                        color: "gray",
+                        marginLeft: "10.5em",
+                      }}
+                    >
+                      <i class="fas fa-edit" style={{ fontSize: "1.3em" }}></i>
+                    </button>
+
+                    <button
+                      variant="light"
+                      type="submit"
+                      onClick={() => {
+                        this.deleteFavorite(item);
+                      }}
+                      style={{
+                        backgroundColor: "#ffffff00",
+                        border: "0",
+                        color: "#dc3545",
+                      }}
+                    >
+                      <i
+                        class="fas fa-trash-alt"
+                        style={{ fontSize: "1.3em" }}
+                      ></i>
+                    </button>
+                    {/* <Card.Title
+                      style={{
+                        width: "15em",
+                        fontFamily: "Arial, Helvetica, sans-serif",
+                        fontSize: "1.1em",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {" "}
+                      <img src={logo} style={{ width: "1.2em" }} />{" "}
+                      {item.comment}
+                    </Card.Title>
                     <Card.Text>
-                      <b>Your Note: {item.comment}</b>
-
-                      <Button
-                        variant="primary"
-                        type="submit"
-                        onClick={() => {
-                          this.editComment(item);
-                        }}
-                      >
-                        Update Note
-                      </Button>
-
-                      <Button
-                        variant="secondary"
-                        type="submit"
-                        onClick={() => {
-                          this.deleteFavorite(item);
-                        }}
-                      >
-                        Remove
-                      </Button>
-                    </Card.Text>
+                      <p>Your Note: {item.comment}</p>
+                    </Card.Text> */}
                   </Card.Body>
                 </Card>
               </div>
@@ -104,7 +139,7 @@ class LikedPost extends React.Component {
             setLoginUser={this.props.setLoginUser}
           />
         )}
-      </>
+      </div>
     );
   }
 }
