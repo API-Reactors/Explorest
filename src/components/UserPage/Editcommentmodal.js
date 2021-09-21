@@ -44,13 +44,16 @@ export class Editcommentmodal extends Component {
                 show={this.props.showCommentEdit} 
             >
                 <Modal.Header>
-                    <Modal.Title>Update Comment</Modal.Title>
+                    <Modal.Title>{this.props.obj.title}</Modal.Title>
                     <Button variant="primary" onClick={this.props.closemodal}>
                         Close
                     </Button>
                 </Modal.Header>
                 <Modal.Body>
 
+                <img width ="467px"  src={this.props.obj.imgUrl} />
+                {this.props.obj.description}
+                <br/>
                     <Form onSubmit={this.updatecomment}>
                         <Form.Group className="mb-3">
                             <Form.Label>New Comment</Form.Label>

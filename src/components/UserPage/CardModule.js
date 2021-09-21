@@ -30,6 +30,7 @@ export class CardModule extends Component {
         // this.setState({
         //     newuser: res.data
         // });
+        localStorage.setItem("user", JSON.stringify(res.data));
         this.props.closemodal()
         
     }
