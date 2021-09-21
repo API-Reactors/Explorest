@@ -27,10 +27,12 @@ class IntrestForm extends React.Component {
 
     axios
       .put(`http://localhost:8080/addIntrests/${testUser._id}`, reqBody)
-      .then(() => {
-        console.log(testUser._id);
+      .then((res) => {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        console.log(res.data);
+        this.props.closemodal();
       });
-    this.props.history.push("/");
+  
   };
   render() {
     return (

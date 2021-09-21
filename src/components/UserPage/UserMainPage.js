@@ -50,11 +50,20 @@ class UserMainPage extends React.Component {
       content: { title: title, img: img, description: description },
     });
   };
-  closemodal = () => {
+  closemodal =  () => {
     this.setState({
       show: false,
       showIntrestEdit: false,
+      user:JSON.parse(localStorage.getItem("user")),
+       
     });
+   axios
+      .get(`http://localhost:8080/main/${this.state.user.userName}`)
+      .then((foundItem) => {
+        this.setState({ test: foundItem.data });
+      })
+      .catch((error) => alert(error.message));
+    console.log(this.state.test);
   };
 
   setLogoutUser = () => {
@@ -153,7 +162,9 @@ class UserMainPage extends React.Component {
                   </Masonry>
                 </>
               ) : (
-                <IntrestForm />
+                <IntrestForm
+                closemodal={this.closemodal}
+                />
               )}
             </>
           )}
