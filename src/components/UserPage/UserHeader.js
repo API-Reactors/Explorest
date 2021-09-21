@@ -21,7 +21,7 @@ class Header extends React.Component {
             <img src={logo} className="logo" />
           </Navbar.Brand>
 
-          <Navbar.Collapse id="navbarScroll" className="navBar">
+          <Navbar.Collapse id="navbarScroll" className="navBarUser">
             <Nav.Link style={{ padding: "0 8px", color: "black" }} href="/">
               Home
             </Nav.Link>
@@ -43,7 +43,7 @@ class Header extends React.Component {
               change intrest
             </Button>
             <Button
-              variant="light"
+              variant="danger"
               style={{
                 borderRadius: "50px",
                 fontWeight: "bold",

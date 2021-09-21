@@ -74,20 +74,22 @@ class UserMainPage extends React.Component {
           handleIntrestsModule={this.handleIntrestsModule}
         />
         <div style={{ margin: "20px 70px" }}>
-          {this.state.test.length === 0 && (<div class="d-flex justify-content-center">
-            <div style={{ textAlign: "center", margin: "0px auto" }} class="spinner-grow text-danger" role="status">
-            </div>
-          </div>)}
+          
           {this.state.user.intrests.length > 0 ?
 
 
             <>
+            {this.state.test.length === 0 && (<div class="d-flex justify-content-center">
+            <div style={{ textAlign: "center", margin: "0px auto" }} class="spinner-grow text-danger" role="status">
+            </div>
+          </div>)}
               < Masonry
                 breakpointCols={this.breakpoints}
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column"
               >
                 {this.state.test.map((value) => {
+                  console.log(value.img);
                   return (
                     <Card style={{ width: "16.5rem" }} onClick={() => { this.handleopen(value) }}>
                       <Card.Img variant="top" src={value.img} />

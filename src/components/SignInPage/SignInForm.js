@@ -1,9 +1,12 @@
 import React from "react";
-import { Form, Button, Modal } from "react-bootstrap";
+import { Form, Button, Modal, Carousel } from "react-bootstrap";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import Header from "./Header";
 import logo from "../assets/logo.png";
+import foodImg from "../assets/foodimg.json";
+import artImg from "../assets/artimg.json";
+import Masonry from "react-masonry-css";
 
 class SignInForm extends React.Component {
   constructor(props) {
@@ -11,6 +14,11 @@ class SignInForm extends React.Component {
     this.state = {
       showSignIn: false,
       showSignUp: false,
+    };
+    this.breakpoints = {
+      default: 7,
+      1100: 4,
+      700: 3,
     };
   }
   handleShowSignIn = () => {
@@ -60,7 +68,8 @@ class SignInForm extends React.Component {
       console.log(foundUser);
       alert(foundUser.data.message);
     });
-    this.handleShowSignUp();
+    this.handleShowSignIn();
+    this.handleCloseSignUp();
   };
 
   handleClick = () => {
@@ -98,12 +107,12 @@ class SignInForm extends React.Component {
             <Modal.Title
               style={{
                 textAlign: "center",
-                padding:"0 0 20px"
+                padding: "0 0 20px",
               }}
             >
-              <img src={logo} style={{width:"4em"}}/>
-              <br/>
-              <h2 style={{fontWeight:"700"}}>Welcome To Explorest</h2>
+              <img src={logo} style={{ width: "4em" }} />
+              <br />
+              <h2 style={{ fontWeight: "700" }}>Welcome To Explorest</h2>
             </Modal.Title>
             <Modal.Body>
               <Form className="loginForm" onSubmit={this.handleSignIn}>
@@ -112,7 +121,7 @@ class SignInForm extends React.Component {
                     type="text"
                     name="userName"
                     placeholder="Enter email or User Name"
-                    style={{height:"3em"}}
+                    style={{ height: "3em" }}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -120,7 +129,7 @@ class SignInForm extends React.Component {
                     type="password"
                     name="password"
                     placeholder="Password"
-                    style={{height:"3em", marginBottom:"30px"}}
+                    style={{ height: "3em", marginBottom: "30px" }}
                   />
                 </Form.Group>
                 <Button
@@ -130,7 +139,6 @@ class SignInForm extends React.Component {
                     width: "15em",
                     borderRadius: "5em",
                     fontSize: "20px",
-                   
                   }}
                 >
                   Sign In
@@ -144,7 +152,6 @@ class SignInForm extends React.Component {
                     width: "15em",
                     borderRadius: "5em",
                     fontSize: "20px",
-                   
                   }}
                   onClick={this.handleClick}
                 >
@@ -175,64 +182,147 @@ class SignInForm extends React.Component {
             <Modal.Title
               style={{
                 textAlign: "center",
-                padding:"0 0 20px"
+                padding: "0 0 20px",
               }}
             >
-              <img src={logo} style={{width:"4em"}}/>
-              <br/>
-              <h2 style={{fontWeight:"700"}}>Welcome To Explorest</h2>
+              <img src={logo} style={{ width: "4em" }} />
+              <br />
+              <h2 style={{ fontWeight: "700" }}>Welcome To Explorest</h2>
             </Modal.Title>
-          <Modal.Body>
-            <Form onSubmit={this.handleSignUp}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>User Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="userName"
-                  placeholder="Enter UserName"
-                />
-              </Form.Group>
+            <Modal.Body>
+              <Form onSubmit={this.handleSignUp}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>User Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="userName"
+                    placeholder="Enter UserName"
+                  />
+                </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Full Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="fullName"
-                  placeholder="Enter Full Name"
-                />
-              </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Full Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="fullName"
+                    placeholder="Enter Full Name"
+                  />
+                </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="email"
-                  placeholder="Enter Email"
-                />
-              </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="email"
+                    placeholder="Enter Email"
+                  />
+                </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                />
-              </Form.Group>
-              <Button variant="primary"
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                </Form.Group>
+                <Button
+                  variant="primary"
                   style={{
                     width: "15em",
                     borderRadius: "5em",
                     fontSize: "20px",
-                    marginTop:"20px"
-                   
-                  }}>
-                Register
-              </Button>
-            </Form>
-          </Modal.Body>
+                    marginTop: "20px",
+                  }}
+                  type="submit"
+              
+                >
+                  Register
+                </Button>
+              </Form>
+            </Modal.Body>
           </div>
         </Modal>
+
+        <Carousel
+          variant="dark"
+          controls="false"
+          indicators="false"
+          fade
+          pause="false"
+        >
+          <Carousel.Item>
+            <div className="carsForm">
+              <br /><br />
+              <h1>Explore New Things</h1>
+              <h2 style={{ color: "#FFC069" }}>New recipes</h2>
+              
+              <Masonry
+                breakpointCols={this.breakpoints}
+                className="my-masonry-grid"
+                columnClassName="my-masonry-grid_column"
+              >
+                {foodImg.map((img, i) => {
+                  return (
+                    <img
+                      className={`foodImg-${i}`}
+                      style={{ width: "13rem", marginBottom: "20px" }}
+                      src={img}
+                    />
+                  );
+                })}
+              </Masonry>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className="carsForm">
+              <br />
+              <br />
+              <h1>Explore New Things</h1>
+              <h2 style={{ color: "#57CC99" }}>Art, Design & Colors</h2>
+              
+              <Masonry
+                breakpointCols={this.breakpoints}
+                className="my-masonry-grid"
+                columnClassName="my-masonry-grid_column"
+              >
+                {artImg.map((img, i) => {
+                  return (
+                    <img
+                      className={`foodImg-${i}`}
+                      style={{ width: "13rem", marginBottom: "20px" }}
+                      src={img}
+                    />
+                  );
+                })}
+              </Masonry>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className="carsForm">
+              <br />
+              <br />
+              <h1>Explore New Things</h1>
+              <h2 style={{ color: "#548CA8" }}>World News</h2>
+              
+              <Masonry
+                breakpointCols={this.breakpoints}
+                className="my-masonry-grid"
+                columnClassName="my-masonry-grid_column"
+              >
+                {foodImg.map((img, i) => {
+                  return (
+                    <img
+                      className={`foodImg-${i}`}
+                      style={{ width: "13rem", marginBottom: "20px" }}
+                      src={img}
+                    />
+                  );
+                })}
+              </Masonry>
+            </div>
+          </Carousel.Item>
+        </Carousel>
       </>
     );
   }
