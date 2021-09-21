@@ -1,45 +1,61 @@
-
-import React from 'react';
-import LikedPost from "./liked.post.js"
+import React from "react";
+import LikedPost from "./liked.post.js";
+import Intrest from "./Intrest.js";
 // import axios from 'axios';
-
+import Header from "./UserHeader";
+import { withRouter } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showIntrestEdit: false,
+      user: JSON.parse(localStorage.getItem("user")),
+    };
+  }
+  setLogoutUser = () => {
+    this.props.setLogoutUser();
+    this.props.history.push("/");
+  };
+  closemodal = () => {
+    this.setState({
+      showIntrestEdit: false,
+      user: JSON.parse(localStorage.getItem("user")),
+    });
+  };
+  handleIntrestsModule = () => {
+    this.setState({
+      showIntrestEdit: true,
+    });
+  };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-              
-        }
-
-}
-
-
-render() {
+  render() {
     return (
-        <div>
+      <div>
+        <Header
+          handleLogout={this.setLogoutUser}
+          handleIntrestsModule={this.handleIntrestsModule}
+        />
+        <div className="profile">
+          <img
+            className="img"
+            src="https://sothis.es/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
+          />
+          <h1>{this.state.user.fullName}</h1>
+          <h3>{this.state.user.email}</h3>
 
-
-<h1>{this.props.fullName}</h1>
-
-
-<h2> User Name : {this.props.userName}
-</h2>
-<h2>
- Email:{this.props.email}
-</h2>
-
-
-<LikedPost/>
-
+          <LikedPost
+            user={this.state.user}
+            setLoginUser={this.props.setLoginUser}
+          />
+          <Intrest
+            showIntrestEdit={this.state.showIntrestEdit}
+            closemodal={this.closemodal}
+          />
         </div>
-
-           
+      </div>
     );
+  }
 }
-
-
-}
-export default Profile;
-
-
+export default withRouter(Profile);
