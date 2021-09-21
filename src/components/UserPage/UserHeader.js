@@ -13,15 +13,27 @@ class Header extends React.Component {
     this.props.handleLogout();
   };
 
+
   render() {
     return (
       <header>
+
         <Navbar className="header shadow-sm p-3 mb-5 bg-white rounded">
           <Navbar.Brand className="mr-lg-5" href="/">
             <img src={logo} className="logo" />
           </Navbar.Brand>
 
-          <Navbar.Collapse id="navbarScroll" className="navBarUser">
+
+          <Navbar.Collapse id="navbarScroll" className="navBar">
+          <form class="input-group" onSubmit={this.props.handleSearch}>
+          <div class="form-outline">
+            <input name="query"  type="search" id="form1" class="form-control" placeholder="Search" />
+          </div>
+          <button type="submit" class="btn btn-primary">
+            
+          </button>
+        </form>
+
             <Nav.Link style={{ padding: "0 8px", color: "black" }} href="/">
               Home
             </Nav.Link>
@@ -30,6 +42,12 @@ class Header extends React.Component {
               href="/profile"
             >
               Profile
+            </Nav.Link>
+            <Nav.Link
+              style={{ padding: "0 22px 0 8px", color: "black" }}
+              href="/search"
+            >
+              Search
             </Nav.Link>
 
             <Button
@@ -55,6 +73,7 @@ class Header extends React.Component {
             </Button>
           </Navbar.Collapse>
         </Navbar>
+  
       </header>
     );
   }
