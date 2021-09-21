@@ -1,65 +1,50 @@
 import React from "react";
-import {
-  Navbar,
-  Button,
-  Nav,
-} from "react-bootstrap";
+import { Navbar, Button, Nav } from "react-bootstrap";
 import logo from "../assets/logo6.png";
 import "../assets/style.css";
 
 class Header extends React.Component {
-
   handleLogOut = () => {
     this.props.handleLogout();
   };
 
-
   render() {
     return (
       <header>
-
         <Navbar className="header shadow-sm p-3 mb-5 bg-white rounded">
           <Navbar.Brand className="mr-lg-5" href="/">
             <img src={logo} className="logo" />
           </Navbar.Brand>
 
-
-          <Navbar.Collapse id="navbarScroll" className="navBar">
-          <form class="input-group" onSubmit={this.props.handleSearch}>
-          <div class="form-outline">
-            <input name="query"  type="search" id="form1" class="form-control" placeholder="Search" />
-          </div>
-          <button type="submit" class="btn btn-primary">
-            
-          </button>
-        </form>
-
-            <Nav.Link style={{ padding: "0 8px", color: "black" }} href="/">
+          <Navbar.Collapse id="navbarScroll" className="userNav">
+            <Nav.Link
+              style={{ padding: "0 8px", color: "black", fontSize: "1.2em" }}
+              href="/"
+            >
               Home
             </Nav.Link>
             <Nav.Link
-              style={{ padding: "0 15px 0 8px", color: "black" }}
+              style={{
+                padding: "0 15px 0 8px",
+                color: "black",
+                fontSize: "1.2em",
+              }}
               href="/profile"
             >
               Profile
             </Nav.Link>
-            <Nav.Link
-              style={{ padding: "0 22px 0 8px", color: "black" }}
-              href="/search"
-            >
-              Search
-            </Nav.Link>
+            <form onSubmit={this.props.handleSearch}>
+              <input
+                name="query"
+                id="form1"
+                className="search"
+                placeholder="Search"
+              />
+              <button type="submit" class="btn searchBtn">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
 
-            <Button
-              variant="light"
-              style={{
-                borderRadius: "50px",
-                fontWeight: "bold",
-                margin: "0 5px",
-              }}
-              onClick={this.props.handleIntrestsModule}>
-              change intrest
-            </Button>
             <Button
               variant="danger"
               style={{
@@ -73,7 +58,16 @@ class Header extends React.Component {
             </Button>
           </Navbar.Collapse>
         </Navbar>
-  
+        <Button
+          variant="light"
+          style={{
+            margin: "0 5px",
+          }}
+          className="setting"
+          onClick={this.props.handleIntrestsModule}
+        >
+          <i class="fas fa-sliders-h"></i>
+        </Button>
       </header>
     );
   }
