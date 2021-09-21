@@ -1,42 +1,100 @@
+body{
+  background-color: rgb(224, 136, 64);
+}
 .card {
   justify-content: center;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 99%;
-margin: 1%;
-    border: solid black  2px;
-  }
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
-  }
- 
-  .container {
-    padding: 2px 16px;
-    border:groove gray 3px;
-    }
-    body{
-        background-color: white;
-    }
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 99%;
+  margin: 1%;
+  border: solid black 2px;
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 1);
+}
 
-    .p{
-        text-align: center;
-        font-family: Georgia, serif;   
-        margin-top: 124px;
-     }
-     .each-slide{
-         height: 500px;
-   
-     }
-     .name{
-        height: 1000px;
-         width: 100%;
-     }
-     .slide-container{
-         width: 50%;
-         margin-top: 10%;
-         padding-top: 1%;
-         
-     }
+.container {
+  padding: 2px 16px;
+  border: groove gray 3px;
+}
+body {
+  background-color: white;
+}
+
+.p {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;  bottom: 0;
+   margin-top: 4%; 
+}
+.each-slide {
+  height: 500px;
+}
+.name {
+  height: 1000px;
+  width: 100%;
+}
+.slide-container {
+  width: 50%;
+  margin-top: 10%;
+  padding-top: 1%;
+}
+
+.sliders {
+  height:900;
+  width: 90%;
+  margin-bottom: -2.9%;
+  border-radius: 50px;
+
+}
+.people {
+  height: 700px;
+  background-image: url("https://www.choice.com.au/-/media/911cf4b2f33c4ec8a3fa272e452321ec.ashx");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-bottom: -10%;
+  border-radius: 50px;
+  border: inset #C90A0A;
 
 
-     
+}
+
+div img {
+  height: 500px;
+}
+
+.para {
+  width: 50%;
+  height: 350px;
+  margin-left: 49%;
+  font-size: 150%;
+  color: white;
+  
+  border: outset #C90A0A;
+  border-width: thick;
+  /* height: 35%; */
+  position: absolute;
+  margin-top: 30px;
+  border-radius: 50px;
+
+
+}
+
+
+.bttn {
+  margin-top: 8%;
+  background-color: #C90A0A; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 50px;
+
+}
+ .bttn a {
+   color: white;
+   font-weight: bold;
+
+ }

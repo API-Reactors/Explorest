@@ -3,15 +3,18 @@ import "./AboutUs.css";
 import 'react-slideshow-image/dist/styles.css'
 import { Slide } from 'react-slideshow-image';
 import Footer from "./Footer";
+import SignUpForm from "./SignInForm";
+
 
 
 const slideImages = [
     '/img/bayan.jpg',
     '/img/reem.jpg',
     '/img/Al-Tayeb.jpg',
-    '/img/Samera.jpg',
+    '/img/sam.jpg',
     '/img/yahia.jpg',
     '/img/yousef.jpg',
+   
   ];
 
 export class AboutUs extends Component {
@@ -20,15 +23,20 @@ export class AboutUs extends Component {
         
       <div>
 
-<div>
-
-
+<div class="people">
+  <div class="para">
 <p class="p">
 Our website focuses on users all around the world to have the ability to explore and go through different kinds of genres using our website Our website gives u the ability to search through ur favorite topic wether u like Cooking , Fashion , Makeup , Desserts , Toys for Kids , Quotes ... etc and favoriting your topic at our website to check it again easily Our website Helps users to reach their favorite matters with its updates as part of knowledge and entertainment
 </p>
-
+<button class="bttn">
+<a href="/">
+Sing Up
+</a> </button>
 </div>
+</div>
+
 <center>
+  <section class="sliders">
 <div className="slide-container">
         <Slide>
             
@@ -58,7 +66,7 @@ Our website focuses on users all around the world to have the ability to explore
         </div>
 
         <div class="card">
-          <img src="/img/Samera.jpg" />
+          <img  src="/img/sam.jpg" />
           <div class="container">
             <h3>Samera alhaj</h3>
             <p>26 years old,translator, graduated at Zarqa private university</p>
@@ -68,7 +76,7 @@ Our website focuses on users all around the world to have the ability to explore
           <img src="/img/yahia.jpg" />
           <div class="container">
             <h3>Yahia Labib</h3>
-            <p>I am Yahia Labib, I am a mechanical engineer I worked in automobile maintenance for one year and now I am taking a coure in software devloping however,I believe that programing is a competitive and challenging environment where I can find myself, achieve my ambition and use my skills.</p>
+            <p>I am Yahia Labib, I am a mechanical engineer I worked in automobile maintenance for one year and now I am taking a coure in software devloping</p>
           </div>
         </div>
         <div class="card">
@@ -79,9 +87,10 @@ Our website focuses on users all around the world to have the ability to explore
           </div>
         </div>
         </Slide>
-        
       </div>
+      </section>
       </center>
+      <Footer/>
 
       </div>
     
