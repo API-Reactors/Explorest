@@ -32,7 +32,16 @@ class Header extends React.Component {
               Profile
             </Nav.Link>
 
-    
+            <Button
+              variant="light"
+              style={{
+                borderRadius: "50px",
+                fontWeight: "bold",
+                margin: "0 5px",
+              }}
+              onClick={this.props.handleIntrestsModule}>
+              change intrest
+            </Button>
             <Button
               variant="light"
               style={{
