@@ -11,6 +11,9 @@ import CardModule from "./CardModule";
 import Header from "./UserHeader";
 import Intrest from "./Intrest.js";
 import logo from "../assets/logo.png";
+import Footer from "../SignInPage/Footer";
+import "./UserMainPage.css";
+
 
 class UserMainPage extends React.Component {
   constructor(props) {
@@ -117,6 +120,7 @@ class UserMainPage extends React.Component {
             <>
               {this.state.user.intrests.length > 0 ? (
                 <>
+
                   <Masonry
                     breakpointCols={this.breakpoints}
                     className="my-masonry-grid"

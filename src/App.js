@@ -7,6 +7,8 @@ import IntrestForm from "./components/SignInPage/IntrestForm";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserMainPage from './components/UserPage/UserMainPage';
 import Profile from "./components/UserPage/Profile";
+import AboutUs from "./components/SignInPage/AboutUs";
+
 
 class App extends React.Component {
 
@@ -85,10 +87,15 @@ class App extends React.Component {
                 user={this.state.user}
                 setLogoutUser={this.setLogoutUser}
               />
-            </Route>           
+            </Route>
+ </Route>
+          <Route path="/aboutus">
+            <AboutUs />
+          </Route>
           </Switch>
         </Router>
       </div>
+
 
 
     );
