@@ -82,7 +82,7 @@ class UserMainPage extends React.Component {
       search: e.target.query.value,
     });
     const searching = await axios.get(
-      `https://pixabay.com/api/?key=23439126-48e6990e9f2a6b0eef8dd8f7e&q=${this.state.search}&image_type=photo&safesearch=true`
+      `https://pixabay.com/api/?key=${process.env.REACT_APP_API_KEY}&q=${this.state.search}&image_type=photo&safesearch=true`
     );
     console.log(searching.data.hits);
     this.setState({
@@ -92,6 +92,7 @@ class UserMainPage extends React.Component {
   };
 
   render() {
+   
     return (
       <div>
         <Header
