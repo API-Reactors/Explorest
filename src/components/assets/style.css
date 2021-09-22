@@ -385,7 +385,7 @@ section div img {
   font-size: 1.5em;
 }
 
-section {
+.section-profile {
   background: linear-gradient(150deg, #a62314 15%, #d78228 70%, #f2b64b 94%);
   position: relative;
   overflow: hidden;

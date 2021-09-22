@@ -38,7 +38,7 @@ class Profile extends React.Component {
           handleIntrestsModule={this.handleIntrestsModule}
         />
 
-        <section class="section section-lg section-shaped pb-250">
+        <section class="section-profile">
           <div class="span0"></div>
           <div class="span1"></div>
           <div class="span2"></div>

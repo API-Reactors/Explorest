@@ -55,8 +55,15 @@ class SignInForm extends React.Component {
       .then((foundUser) => {
         console.log(foundUser.data);
 
-        // swal.fire(foundUser.data.message, "Please Login Now!", "success");
-        // alert(foundUser.data.message);
+        if(foundUser.data.err){
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: foundUser.data.message,
+            showConfirmButton: false,
+            timer: 2500,
+          });
+        } 
         this.props.setLoginUser(foundUser.data.user);
       });
     this.props.history.push("/");
