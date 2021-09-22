@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-// import "./AboutUs.css";
 import "react-slideshow-image/dist/styles.css";
 import Header from "./Header";
-import logo from "../assets/logo.png";
 import { Slide } from "react-slideshow-image";
 import Footer from "./Footer";
-import SignUpForm from "./SignInForm";
 
 const slideImages = [
   "/img/bayan.jpg",

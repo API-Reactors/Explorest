@@ -109,7 +109,7 @@ class UserMainPage extends React.Component {
 
           {!this.state.searchshow && (
             <>
-              {this.props.user.intrests.length > 0 ? (
+              {this.state.user.intrests.length > 0 ? (
                 <>
                   {this.state.test.length === 0 && (
                     <div class="d-flex justify-content-center">

@@ -26,7 +26,7 @@ class IntrestForm extends React.Component {
     let reqBody = this.state.allIntrestsArray;
 
     axios
-      .put(`${process.env.REACT_APP_API_URL}/${testUser._id}`, reqBody)
+      .put(`${process.env.REACT_APP_API_URL}/addIntrests/${testUser._id}`, reqBody)
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
         console.log(res.data);
