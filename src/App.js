@@ -88,8 +88,7 @@ class App extends React.Component {
                 setLogoutUser={this.setLogoutUser}
               />
             </Route>
- </Route>
-          <Route path="/aboutus">
+          <Route path="/about">
             <AboutUs />
           </Route>
           </Switch>

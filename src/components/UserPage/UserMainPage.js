@@ -14,7 +14,6 @@ import logo from "../assets/logo.png";
 import Footer from "../SignInPage/Footer";
 import "./UserMainPage.css";
 
-
 class UserMainPage extends React.Component {
   constructor(props) {
     super(props);
@@ -42,6 +41,7 @@ class UserMainPage extends React.Component {
         this.setState({ test: foundItem.data });
       })
       .catch((error) => alert(error.message));
+      console.log("Error",this.state.user.intrests);
   };
 
   handleClick = () => {
@@ -53,14 +53,13 @@ class UserMainPage extends React.Component {
       content: { title: title, img: img, description: description },
     });
   };
-  closemodal =  () => {
+  closemodal = () => {
     this.setState({
       show: false,
       showIntrestEdit: false,
-      user:JSON.parse(localStorage.getItem("user")),
-       
+      user: JSON.parse(localStorage.getItem("user")),
     });
-   axios
+    axios
       .get(`http://localhost:8080/main/${this.state.user.userName}`)
       .then((foundItem) => {
         this.setState({ test: foundItem.data });
@@ -85,7 +84,7 @@ class UserMainPage extends React.Component {
     const searching = await axios.get(
       `https://pixabay.com/api/?key=23439126-48e6990e9f2a6b0eef8dd8f7e&q=${this.state.search}&image_type=photo&safesearch=true`
     );
-    console.log(searching.data.hits[0].tags);
+    console.log(searching.data.hits);
     this.setState({
       searchResult: searching.data.hits,
       searchshow: true,
@@ -101,26 +100,26 @@ class UserMainPage extends React.Component {
           handleSearch={this.handleSearch}
         />
         <div style={{ margin: "90px 50px" }}>
-          {this.state.test.length === 0 && (
-            <div class="d-flex justify-content-center">
-              <div
-                style={{ textAlign: "center", margin: "0px auto" }}
-                class="spinner-grow text-danger"
-                role="status"
-              ></div>
-            </div>
-          )}
           {this.state.searchshow && (
             <Search
               handleopen={this.handleopen}
               searchResult={this.state.searchResult}
             />
           )}
+
           {!this.state.searchshow && (
             <>
               {this.state.user.intrests.length > 0 ? (
                 <>
-
+                  {this.state.test.length === 0 && (
+                    <div class="d-flex justify-content-center">
+                      <div
+                        style={{ textAlign: "center", margin: "0px auto" }}
+                        class="spinner-grow text-danger"
+                        role="status"
+                      ></div>
+                    </div>
+                  )}
                   <Masonry
                     breakpointCols={this.breakpoints}
                     className="my-masonry-grid"
@@ -156,7 +155,7 @@ class UserMainPage extends React.Component {
                                 fontWeight: "bold",
                               }}
                             >
-                              <img src={logo} style={{ width: "1.7em" }} />{" "}
+                             
                               {value.title}
                             </Card.Title>
                           </Card.Body>
@@ -166,9 +165,7 @@ class UserMainPage extends React.Component {
                   </Masonry>
                 </>
               ) : (
-                <IntrestForm
-                closemodal={this.closemodal}
-                />
+                <IntrestForm closemodal={this.closemodal} />
               )}
             </>
           )}
