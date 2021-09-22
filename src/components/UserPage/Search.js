@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Masonry from "react-masonry-css";
 import axios from "axios";
-import logo from "../assets/logo.png";
+
 
 
 export class Search extends Component {
@@ -54,7 +54,7 @@ export class Search extends Component {
                       fontWeight: "bold",
                     }}
                   >
-                       <img src={logo} style={{ width: "1.7em" }} />{" "}
+                     
                     {value.tags}
                   </Card.Title>
                 </Card.Body>

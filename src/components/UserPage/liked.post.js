@@ -3,7 +3,7 @@ import Masonry from "react-masonry-css";
 // import axios from 'axios';
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
+import {Row, Col} from "react-bootstrap";
 import axios from "axios";
 import logo from "../assets/logo.png";
 
@@ -52,16 +52,16 @@ class LikedPost extends React.Component {
 
   render() {
     return (
-      <div style={{ margin: "90px 80px", textAlign: "left" }}>
-        <Masonry
-          breakpointCols={this.breakpoints}
-          className="my-masonry-grid"
-          columnClassName="my-masonry-grid_column"
-        >
+      <div style={{ margin: "0 100px 50px", textAlign: "center",position: "relative",
+      bottom: "2em"}}>
+
+
+        <Row xs={1} md={5} className="g-4" >
           {this.state.user.likes.map((item, idx) => {
             return (
               <div key={idx}>
-                <Card style={{ width: "15rem", border: "0" }}>
+                <Col>
+                <Card style={{ width: "12rem", border: "0" }}>
                   <Card.Img
                     variant="top"
                     src={item.imgUrl}
@@ -69,6 +69,7 @@ class LikedPost extends React.Component {
                       borderRadius: "1.2em",
                       boxShadow:
                         " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                      height:"17em"
                     }}
                     onClick={() => {
                         this.editComment(item);}}
@@ -85,7 +86,7 @@ class LikedPost extends React.Component {
                         backgroundColor: "#ffffff00",
                         border: "0",
                         color: "gray",
-                        marginLeft: "10.5em",
+                        marginLeft: "7em",
                       }}
                     >
                       <i class="fas fa-edit" style={{ fontSize: "1.3em" }}></i>
@@ -125,10 +126,13 @@ class LikedPost extends React.Component {
                     </Card.Text> */}
                   </Card.Body>
                 </Card>
+                </Col>
               </div>
             );
           })}
-        </Masonry>
+        </Row>
+
+
         {this.state.showCommentEdit && (
           <Editcommentmodal
             user={this.state.user}

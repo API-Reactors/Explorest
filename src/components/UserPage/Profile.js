@@ -37,16 +37,25 @@ class Profile extends React.Component {
           handleLogout={this.setLogoutUser}
           handleIntrestsModule={this.handleIntrestsModule}
         />
+
+        <section class="section section-lg section-shaped pb-250">
+          <div class="span0"></div>
+          <div class="span1"></div>
+          <div class="span2"></div>
+          <div class="span3"></div>
+          <div class="span4"></div>
+          <div class="span5"></div>
+          <div class="span6"></div>
+        </section>
+
         <div className="profile">
-          <div className="profile-card">
-          <img
-            className="img"
-            src="https://sothis.es/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
-          />
           <div className="info">
-          <h1>{this.state.user.fullName}</h1>
-          <p>{this.state.user.email}</p>
-          </div>
+            <img
+              className="img"
+              src="https://sothis.es/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
+            />
+            <h1>{this.state.user.fullName}</h1>
+            <p>{this.state.user.email}</p>
           </div>
           <LikedPost
             user={this.state.user}
@@ -56,6 +65,9 @@ class Profile extends React.Component {
             showIntrestEdit={this.state.showIntrestEdit}
             closemodal={this.closemodal}
           />
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <p>©Explorest 2021</p>
         </div>
       </div>
     );

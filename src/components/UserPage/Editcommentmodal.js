@@ -18,7 +18,10 @@ export class Editcommentmodal extends Component {
       newcomment: e.target.newComment.value,
     };
 
-    let res = await axios.put(`${process.env.REACT_APP_API_URL}/updateLike/${this.props.user._id}`, reqBody)
+    let res = await axios.put(
+      `${process.env.REACT_APP_API_URL}/updateLike/${this.props.user._id}`,
+      reqBody
+    );
     localStorage.setItem("user", JSON.stringify(res.data));
 
     this.setState({
@@ -55,13 +58,35 @@ export class Editcommentmodal extends Component {
             <div className="postCard">
               <h2>{this.props.obj.title}</h2>
               <Modal.Body>
-                <p> {this.props.obj.description}</p>
+                <p
+                  style={{
+                    height: "310px",
+                    textOverflow: "ellipsis",
+                    overflow: "hidden",
+                    marginBottom: "0",
+                  }}
+                >
+                  {" "}
+                  {this.props.obj.description}
+                </p>
                 <br />
+
+                <h5
+                  style={{
+                    padding: "20px",
+                    backgroundColor: "#eae9e9",
+                    marginBottom: "20px",
+                    borderRadius: "2em",
+                  }}
+                >
+                  {this.props.obj.comment}
+                </h5>
+
                 <Form onSubmit={this.updatecomment}>
                   <Form.Control
                     type="text"
                     name="newComment"
-                    defaultValue={this.props.obj.comment}
+                    defaultValue= "Edit Your Note!"
                     style={{
                       width: "100%",
                       height: "50px",
@@ -70,7 +95,7 @@ export class Editcommentmodal extends Component {
                   />
 
                   <button type="submit" className="button">
-                  <i class="fas fa-pen" style={{ fontSize: ".7em" }}></i>
+                    <i class="fas fa-pen" style={{ fontSize: ".7em" }}></i>
                   </button>
                 </Form>
               </Modal.Body>

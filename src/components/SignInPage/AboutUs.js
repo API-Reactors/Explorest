@@ -33,7 +33,7 @@ export class AboutUs extends Component {
               entertainment
             </p>
             <button class="bttn">
-              <a href="/">Sing Up</a>{" "}
+              <a href="/">Sign Up</a>{" "}
             </button>
           </div>
         </div>

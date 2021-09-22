@@ -18,7 +18,12 @@ class Header extends React.Component {
 
           <Navbar.Collapse id="navbarScroll" className="userNav">
             <Nav.Link
-              style={{ padding: "0 8px", color: "black", fontSize: "1.2em" }}
+              style={{
+                padding: "0 8px",
+                color: "#434242",
+                fontSize: "1.2em",
+                fontWeight: "600",
+              }}
               href="/"
             >
               Home
@@ -26,8 +31,9 @@ class Header extends React.Component {
             <Nav.Link
               style={{
                 padding: "0 15px 0 8px",
-                color: "black",
+                color: "#434242",
                 fontSize: "1.2em",
+                fontWeight: "600",
               }}
               href="/profile"
             >

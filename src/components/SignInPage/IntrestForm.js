@@ -38,7 +38,7 @@ class IntrestForm extends React.Component {
     return (
       <div className="intrests">
         <h1>Welcome to Explorest</h1>
-        <h3>Please pick one or more filed </h3>
+        <h3>Please pick one or more field </h3>
         <Form onSubmit={this.handleIntrest}>
           <div key={`inline-checkbox`} className="mb-3">
             <div className="intrest-box">

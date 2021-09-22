@@ -8,7 +8,7 @@ import foodImg from "../assets/foodimg.json";
 import artImg from "../assets/artimg.json";
 import animalImg from "../assets/animal.json";
 import Masonry from "react-masonry-css";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 class SignInForm extends React.Component {
   constructor(props) {
@@ -22,10 +22,8 @@ class SignInForm extends React.Component {
       1100: 4,
       700: 3,
     };
-   
   }
 
-  
   handleShowSignIn = () => {
     this.setState({
       showSignIn: true,
@@ -52,13 +50,15 @@ class SignInForm extends React.Component {
       userName: e.target.userName.value,
       password: e.target.password.value,
     };
-    axios.post(`${process.env.REACT_APP_API_URL}/signIn`, reqBody).then((foundUser) => {
-      console.log(foundUser.data);
-      
-      // swal.fire(foundUser.data.message, "Please Login Now!", "success");
-      // alert(foundUser.data.message);
-      this.props.setLoginUser(foundUser.data.user);
-    });
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/signIn`, reqBody)
+      .then((foundUser) => {
+        console.log(foundUser.data);
+
+        // swal.fire(foundUser.data.message, "Please Login Now!", "success");
+        // alert(foundUser.data.message);
+        this.props.setLoginUser(foundUser.data.user);
+      });
     this.props.history.push("/");
   };
   handleSignUp = (e) => {
@@ -70,19 +70,30 @@ class SignInForm extends React.Component {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    axios.post(`${process.env.REACT_APP_API_URL}/register`, reqBody).then((foundUser) => {
-      console.log(foundUser);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: foundUser.data.message,
-        showConfirmButton: false,
-        timer: 1500,
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/register`, reqBody)
+      .then((foundUser) => {
+        console.log(foundUser);
+        if (foundUser.data.err) {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: foundUser.data.message,
+            showConfirmButton: false,
+            timer: 2500,
+          });
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: foundUser.data.message,
+            showConfirmButton: false,
+            timer: 2500,
+          });
+          this.handleShowSignIn();
+          this.handleCloseSignUp();
+        }
       });
-      // alert(foundUser.data.message);
-    });
-    this.handleShowSignIn();
-    this.handleCloseSignUp();
   };
 
   handleClick = () => {

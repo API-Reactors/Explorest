@@ -54,7 +54,7 @@ class Intrest extends React.Component {
         ></Modal.Header>
 
         <div className="Mintrest">
-          <h1>Please pick one or more filed!</h1>
+          <h1>Please pick one or more field!</h1>
           <Modal.Body>
             <Form onSubmit={this.handleIntrest}>
               <div key={`inline-checkbox-1`} className="mb-3">

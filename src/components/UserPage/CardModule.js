@@ -60,7 +60,7 @@ export class CardModule extends Component {
               />
             </Col>
 
-            <Col md="6" padding="20px">
+            <Col md="6" padding="10px">
               <div className="postCard">
                 <h2>{this.props.content.title}</h2>
                 <Modal.Body>

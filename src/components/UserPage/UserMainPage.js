@@ -41,7 +41,7 @@ class UserMainPage extends React.Component {
         this.setState({ test: foundItem.data });
       })
       .catch((error) => alert(error.message));
-      console.log("Error",this.state.user.intrests);
+    console.log("Error", this.state.user.intrests);
   };
 
   handleClick = () => {
@@ -59,7 +59,7 @@ class UserMainPage extends React.Component {
       showIntrestEdit: false,
       user: JSON.parse(localStorage.getItem("user")),
     });
-   axios
+    axios
       .get(`${process.env.REACT_APP_API_URL}/main/${this.state.user.userName}`)
       .then((foundItem) => {
         this.setState({ test: foundItem.data });
@@ -82,7 +82,7 @@ class UserMainPage extends React.Component {
       search: e.target.query.value,
     });
     const searching = await axios.get(
-      `https://pixabay.com/api/?key=${process.env.REACT_APP_API_KEY}&q=${this.state.search}&image_type=photo&safesearch=true`
+      `https://pixabay.com/api/?key=${process.env.REACT_APP_API_KEY}&q=${this.state.search}&image_type=photo&safesearch=true&per_page=150`
     );
     console.log(searching.data.hits);
     this.setState({
@@ -92,7 +92,6 @@ class UserMainPage extends React.Component {
   };
 
   render() {
-   
     return (
       <div>
         <Header
@@ -154,9 +153,11 @@ class UserMainPage extends React.Component {
                                 fontFamily: "Arial, Helvetica, sans-serif",
                                 fontSize: "1.1em",
                                 fontWeight: "bold",
+                                height: "2.5em",
+                                textOverflow: "ellipsis",
+                                overflow: "hidden",
                               }}
                             >
-                             
                               {value.title}
                             </Card.Title>
                           </Card.Body>
