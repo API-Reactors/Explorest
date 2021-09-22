@@ -6,6 +6,7 @@ import Header from "./Header";
 import logo from "../assets/logo.png";
 import foodImg from "../assets/foodimg.json";
 import artImg from "../assets/artimg.json";
+import animalImg from "../assets/animal.json";
 import Masonry from "react-masonry-css";
 
 class SignInForm extends React.Component {
@@ -75,6 +76,19 @@ class SignInForm extends React.Component {
     this.setState({
       showSignUp: true,
       showSignIn: false,
+    });
+  };
+
+  componentDidMount = () => {
+    window.addEventListener("scroll", (event) => {
+      const scrollable =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      console.log(Math.ceil(scrolled), scrollable);
+
+      if (Math.floor(scrolled) === scrollable) {
+        this.handleShowSignIn();
+      }
     });
   };
 
@@ -234,7 +248,6 @@ class SignInForm extends React.Component {
                     marginTop: "20px",
                   }}
                   type="submit"
-              
                 >
                   Register
                 </Button>
@@ -252,10 +265,11 @@ class SignInForm extends React.Component {
         >
           <Carousel.Item>
             <div className="carsForm">
-              <br /><br />
+              <br />
+              <br />
               <h1>Explore New Things</h1>
               <h2 style={{ color: "#FFC069" }}>New recipes</h2>
-              
+
               <Masonry
                 breakpointCols={this.breakpoints}
                 className="my-masonry-grid"
@@ -264,7 +278,7 @@ class SignInForm extends React.Component {
                 {foodImg.map((img, i) => {
                   return (
                     <img
-                      className={`foodImg-${i}`}
+                      className={`foodImg foodImg-${i}`}
                       style={{ width: "13rem", marginBottom: "20px" }}
                       src={img}
                     />
@@ -278,8 +292,32 @@ class SignInForm extends React.Component {
               <br />
               <br />
               <h1>Explore New Things</h1>
-              <h2 style={{ color: "#57CC99" }}>Art, Design & Colors</h2>
-              
+              <h2 style={{ color: "#57CC99" }}>Wild, Nature & Plants</h2>
+
+              <Masonry
+                breakpointCols={this.breakpoints}
+                className="my-masonry-grid"
+                columnClassName="my-masonry-grid_column"
+              >
+                {animalImg.map((img, i) => {
+                  return (
+                    <img
+                      className={`foodImg foodImg-${i}`}
+                      style={{ width: "13rem", marginBottom: "20px" }}
+                      src={img}
+                    />
+                  );
+                })}
+              </Masonry>
+            </div>
+          </Carousel.Item>
+          <Carousel.Item>
+            <div className="carsForm">
+              <br />
+              <br />
+              <h1>Explore New Things</h1>
+              <h2 style={{ color: "#548CA8" }}>Books, News & Sport</h2>
+
               <Masonry
                 breakpointCols={this.breakpoints}
                 className="my-masonry-grid"
@@ -288,31 +326,7 @@ class SignInForm extends React.Component {
                 {artImg.map((img, i) => {
                   return (
                     <img
-                      className={`foodImg-${i}`}
-                      style={{ width: "13rem", marginBottom: "20px" }}
-                      src={img}
-                    />
-                  );
-                })}
-              </Masonry>
-            </div>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div className="carsForm">
-              <br />
-              <br />
-              <h1>Explore New Things</h1>
-              <h2 style={{ color: "#548CA8" }}>World News</h2>
-              
-              <Masonry
-                breakpointCols={this.breakpoints}
-                className="my-masonry-grid"
-                columnClassName="my-masonry-grid_column"
-              >
-                {foodImg.map((img, i) => {
-                  return (
-                    <img
-                      className={`foodImg-${i}`}
+                      className={`foodImg foodImg-${i}`}
                       style={{ width: "13rem", marginBottom: "20px" }}
                       src={img}
                     />
