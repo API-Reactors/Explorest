@@ -36,7 +36,7 @@ class UserMainPage extends React.Component {
 
   componentDidMount = () => {
     axios
-      .get(`http://localhost:8080/main/${this.props.user.userName}`)
+      .get(`${process.env.REACT_APP_API_URL}/main/${this.props.user.userName}`)
       .then((foundItem) => {
         this.setState({ test: foundItem.data });
       })
@@ -59,8 +59,8 @@ class UserMainPage extends React.Component {
       showIntrestEdit: false,
       user: JSON.parse(localStorage.getItem("user")),
     });
-    axios
-      .get(`http://localhost:8080/main/${this.state.user.userName}`)
+   axios
+      .get(`${process.env.REACT_APP_API_URL}/main/${this.state.user.userName}`)
       .then((foundItem) => {
         this.setState({ test: foundItem.data });
       })
@@ -109,7 +109,7 @@ class UserMainPage extends React.Component {
 
           {!this.state.searchshow && (
             <>
-              {this.state.user.intrests.length > 0 ? (
+              {this.props.user.intrests.length > 0 ? (
                 <>
                   {this.state.test.length === 0 && (
                     <div class="d-flex justify-content-center">

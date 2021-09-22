@@ -41,7 +41,7 @@ class LikedPost extends React.Component {
     console.log(item);
     const reqBody = { title: item.title };
     let res = await axios.put(
-      `http://localhost:8080/deleteLike/${this.state.user._id}`,
+      `${process.env.REACT_APP_API_URL}/deleteLike/${this.state.user._id}`,
       reqBody
     );
     localStorage.setItem("user", JSON.stringify(res.data));

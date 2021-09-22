@@ -22,7 +22,7 @@ export class CardModule extends Component {
     console.log(e.target.comment.value);
 
     let res = await axios.put(
-      `http://localhost:8080/addLike/${this.props.user._id}`,
+      `${process.env.REACT_APP_API_URL}/addLike/${this.props.user._id}`,
       reqBody
     );
 
