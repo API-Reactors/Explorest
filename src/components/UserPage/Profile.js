@@ -38,13 +38,16 @@ class Profile extends React.Component {
           handleIntrestsModule={this.handleIntrestsModule}
         />
         <div className="profile">
+          <div className="profile-card">
           <img
             className="img"
             src="https://sothis.es/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
           />
+          <div className="info">
           <h1>{this.state.user.fullName}</h1>
-          <h3>{this.state.user.email}</h3>
-
+          <p>{this.state.user.email}</p>
+          </div>
+          </div>
           <LikedPost
             user={this.state.user}
             setLoginUser={this.props.setLoginUser}

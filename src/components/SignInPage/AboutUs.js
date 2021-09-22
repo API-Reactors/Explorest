@@ -45,9 +45,9 @@ export class AboutUs extends Component {
           <section class="sliders">
             <div className="slide-container">
               <Slide>
-                <div class="card">
+                <div class="aboutCard">
                   <img src="/img/bayan.jpg" />
-                  <div class="container">
+                  <div class="aboutContainer">
                     <h3>Bayan Qutshan (TeamLeader)</h3>
                     <p>
                       I'm Electrical Engineer, I've got my degree from JUST. I
@@ -56,16 +56,16 @@ export class AboutUs extends Component {
                     </p>
                   </div>
                 </div>
-                <div class="card">
+                <div class="aboutCard">
                   <img src="/img/reem.jpg" />
-                  <div class="container">
+                  <div class="aboutContainer">
                     <h3>Reem Khalil</h3>
                     <p>Civil engineer fresh graduate from LTUC</p>
                   </div>
                 </div>
-                <div class="card">
+                <div class="aboutCard">
                   <img src="/img/Al-Tayeb.jpg" />
-                  <div class="container">
+                  <div class="aboutContainer">
                     <h3>Mohammad Al-Tayeb</h3>
                     <p>
                       Mechanical Engineer fresh graduate from Jordan University
@@ -74,9 +74,9 @@ export class AboutUs extends Component {
                   </div>
                 </div>
 
-                <div class="card">
+                <div class="aboutCard">
                   <img src="/img/sam.jpg" />
-                  <div class="container">
+                  <div class="aboutContainer">
                     <h3>Samera alhaj</h3>
                     <p>
                       26 years old,translator, graduated at Zarqa private
@@ -84,9 +84,9 @@ export class AboutUs extends Component {
                     </p>
                   </div>
                 </div>
-                <div class="card">
+                <div class="aboutCard">
                   <img src="/img/yahia.jpg" />
-                  <div class="container">
+                  <div class="aboutContainer">
                     <h3>Yahia Labib</h3>
                     <p>
                       I am Yahia Labib, I am a mechanical engineer I worked in
@@ -95,9 +95,9 @@ export class AboutUs extends Component {
                     </p>
                   </div>
                 </div>
-                <div class="card">
+                <div class="aboutCard">
                   <img src="/img/yousef.jpg" />
-                  <div class="container">
+                  <div class="aboutContainer">
                     <h3>Yousef Mohammad Jariry</h3>
                     <p>
                       A Software engineering fresh graduate from the hashemite
