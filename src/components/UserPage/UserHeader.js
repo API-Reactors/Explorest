@@ -1,14 +1,9 @@
 import React from "react";
-import {
-  Navbar,
-  Button,
-  Nav,
-} from "react-bootstrap";
+import { Navbar, Button, Nav } from "react-bootstrap";
 import logo from "../assets/logo6.png";
 import "../assets/style.css";
 
 class Header extends React.Component {
-
   handleLogOut = () => {
     this.props.handleLogout();
   };
@@ -21,27 +16,41 @@ class Header extends React.Component {
             <img src={logo} className="logo" />
           </Navbar.Brand>
 
-          <Navbar.Collapse id="navbarScroll" className="navBarUser">
-            <Nav.Link style={{ padding: "0 8px", color: "black" }} href="/">
+          <Navbar.Collapse id="navbarScroll" className="userNav">
+            <Nav.Link
+              style={{
+                padding: "0 8px",
+                color: "#434242",
+                fontSize: "1.2em",
+                fontWeight: "600",
+              }}
+              href="/"
+            >
               Home
             </Nav.Link>
             <Nav.Link
-              style={{ padding: "0 15px 0 8px", color: "black" }}
+              style={{
+                padding: "0 15px 0 8px",
+                color: "#434242",
+                fontSize: "1.2em",
+                fontWeight: "600",
+              }}
               href="/profile"
             >
               Profile
             </Nav.Link>
+            <form onSubmit={this.props.handleSearch}>
+              <input
+                name="query"
+                id="form1"
+                className="search"
+                placeholder="Search"
+              />
+              <button type="submit" class="btn searchBtn">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
 
-            <Button
-              variant="light"
-              style={{
-                borderRadius: "50px",
-                fontWeight: "bold",
-                margin: "0 5px",
-              }}
-              onClick={this.props.handleIntrestsModule}>
-              change intrest
-            </Button>
             <Button
               variant="danger"
               style={{
@@ -55,6 +64,16 @@ class Header extends React.Component {
             </Button>
           </Navbar.Collapse>
         </Navbar>
+        <Button
+          variant="light"
+          style={{
+            margin: "0 5px",
+          }}
+          className="setting"
+          onClick={this.props.handleIntrestsModule}
+        >
+          <i class="fas fa-sliders-h"></i>
+        </Button>
       </header>
     );
   }

@@ -7,21 +7,24 @@ import IntrestForm from "./components/SignInPage/IntrestForm";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserMainPage from './components/UserPage/UserMainPage';
 import Profile from "./components/UserPage/Profile";
+import AboutUs from "./components/SignInPage/AboutUs";
 
 
 class App extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     const userParsed = JSON.parse(localStorage.getItem("user"));
     const userY = userParsed;
-    this.state={
-      user:userY,
-      userData:''
+    this.state = {
+      user: userY,
+      userData: '',
+      searchresults:'',
+      searchQuery: ""
     }
   }
 
-  setLoginUser = (user)=>{
+  setLoginUser = (user) => {
     localStorage.setItem("user", JSON.stringify(user));
     const userParsed = JSON.parse(localStorage.getItem("user"));
     const userY = userParsed;
@@ -29,14 +32,15 @@ class App extends React.Component {
       user: userY,
       userData: user,
     });
-   
+
   }
-   setLogoutUser = () => {
+  setLogoutUser = () => {
     localStorage.removeItem("user");
     this.setState({
       user: {}
     });
   }
+ 
 
   render() {
 
@@ -47,21 +51,23 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/">
               {
-                this.state.user && this.state.user._id ? <UserMainPage setLogoutUser={this.setLogoutUser} user={this.state.user} /> : <SignInForm setLoginUser={this.setLoginUser} />
+                this.state.user && this.state.user._id ? <UserMainPage setLogoutUser={this.setLogoutUser} user={this.state.user} /> : <SignInForm setLoginUser={this.setLoginUser}
+
+                />
               }
             </Route>
             <Route path="/login">
               <SignInForm setLoginUser={this.setLoginUser} />
             </Route>
             <Route path="/register">
-              <SignUpForm 
-              setLoginUser={this.setLoginUser}
+              <SignUpForm
+                setLoginUser={this.setLoginUser}
               />
             </Route>
             <Route path="/intrest">
               <IntrestForm
-              user={this.state.user}
-              setLoginUser={this.setLoginUser}
+                user={this.state.user}
+                setLoginUser={this.setLoginUser}
               />
             </Route>
             <Route path="/profile">
@@ -71,9 +77,13 @@ class App extends React.Component {
                 setLogoutUser={this.setLogoutUser}
               />
             </Route>
+          <Route path="/about">
+            <AboutUs />
+          </Route>
           </Switch>
         </Router>
       </div>
+
 
 
     );

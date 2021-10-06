@@ -13,7 +13,7 @@ class IntrestForm extends React.Component {
   handleIntrest = async (e) => {
     e.preventDefault();
     let chosen = [];
-    for (let i = 1; i < 9; i++) {
+    for (let i = 1; i < 11; i++) {
       let userintr = document.getElementById(`${i}`);
       if (userintr.checked) {
         chosen.push(userintr.name);
@@ -26,17 +26,19 @@ class IntrestForm extends React.Component {
     let reqBody = this.state.allIntrestsArray;
 
     axios
-      .put(`http://localhost:8080/addIntrests/${testUser._id}`, reqBody)
-      .then(() => {
-        console.log(testUser._id);
+      .put(`${process.env.REACT_APP_API_URL}/addIntrests/${testUser._id}`, reqBody)
+      .then((res) => {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        console.log(res.data);
+        this.props.closemodal();
       });
-    this.props.history.push("/");
+  
   };
   render() {
     return (
       <div className="intrests">
         <h1>Welcome to Explorest</h1>
-        <h3>Please pick one or more filed </h3>
+        <h3>Please pick one or more field </h3>
         <Form onSubmit={this.handleIntrest}>
           <div key={`inline-checkbox`} className="mb-3">
             <div className="intrest-box">
@@ -78,13 +80,13 @@ class IntrestForm extends React.Component {
             <div className="intrest-box">
               <Form.Check
                 inline
-                label="Photography"
-                name="photo"
+                label="Animals"
+                name="animal"
                 type={"checkbox"}
                 id={`4`}
                 className="intrest-box-check"
               />
-              <img src="https://i.pinimg.com/originals/65/b7/43/65b743cb3fcf0e32690826bfefc6a63c.jpg" />
+              <img src="https://picturecorrect-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/ethics-of-photographing-wildlife.jpg" />
             </div>
             <div className="intrest-box">
               {" "}
@@ -130,6 +132,28 @@ class IntrestForm extends React.Component {
                 className="intrest-box-check"
               />
               <img src="https://thedavidsnider.com/wp-content/uploads/2021/01/istockphoto-577949148-612x612-1.jpg" />
+            </div>
+            <div className="intrest-box">
+              <Form.Check
+                inline
+                label="Trees"
+                name="tree"
+                type={"checkbox"}
+                id={`9`}
+                className="intrest-box-check"
+              />
+              <img src="https://images.unsplash.com/photo-1462143338528-eca9936a4d09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNjIyNjB8MHwxfHNlYXJjaHwzfHx0cmVlc3xlbnwwfHx8fDE2MzIyNjUxMDk&ixlib=rb-1.2.1&q=80&w=200" />
+            </div>
+            <div className="intrest-box">
+              <Form.Check
+                inline
+                label="Colors"
+                name="color"
+                type={"checkbox"}
+                id={`10`}
+                className="intrest-box-check"
+              />
+              <img src="https://images.ctfassets.net/cnu0m8re1exe/7bvBF6E4WXVLLIsH88lXcC/5a3b7483a82fb30248e7d1c7856be6ec/20-things-color.jpg?fm=jpg&fl=progressive&w=660&h=433&fit=fill" />
             </div>
           </div>
           <Button  variant="danger"

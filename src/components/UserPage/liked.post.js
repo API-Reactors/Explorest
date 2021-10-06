@@ -1,114 +1,151 @@
-
-import React from 'react';
-
+import React from "react";
+import Masonry from "react-masonry-css";
 // import axios from 'axios';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import axios from 'axios';
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import {Row, Col} from "react-bootstrap";
+import axios from "axios";
+import logo from "../assets/logo.png";
 
-import Editcommentmodal from "./Editcommentmodal"
+import Editcommentmodal from "./Editcommentmodal";
 class LikedPost extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      likedPosts: this.props.user.likes,
+      showCommentEdit: false,
+      obj: {},
+      user: JSON.parse(localStorage.getItem("user")),
+    };
+    this.breakpoints = {
+      default: 5,
+      1100: 4,
+      700: 3,
+    };
+  }
+  editComment = (item) => {
+    this.setState({
+      showCommentEdit: true,
+      obj: item,
+    });
+  };
+
+  closemodal = () => {
+    this.setState({
+      showCommentEdit: false,
+      user: JSON.parse(localStorage.getItem("user")),
+    });
+  };
+
+  deleteFavorite = async (item) => {
+    console.log(item);
+    const reqBody = { title: item.title };
+    let res = await axios.put(
+      `${process.env.REACT_APP_API_URL}/deleteLike/${this.state.user._id}`,
+      reqBody
+    );
+    localStorage.setItem("user", JSON.stringify(res.data));
+    this.setState({
+      user: JSON.parse(localStorage.getItem("user")),
+    });
+  };
+
+  render() {
+    return (
+      <div style={{ margin: "0 100px 50px", textAlign: "center",position: "relative",
+      bottom: "2em"}}>
 
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            likedPosts: this.props.user.likes,
-            showCommentEdit: false,
-            obj: {},
-            user: JSON.parse(localStorage.getItem("user")),
+        <Row xs={1} md={5} className="g-4" >
+          {this.state.user.likes.map((item, idx) => {
+            return (
+              <div key={idx}>
+                <Col>
+                <Card style={{ width: "12rem", border: "0" }}>
+                  <Card.Img
+                    variant="top"
+                    src={item.imgUrl}
+                    style={{
+                      borderRadius: "1.2em",
+                      boxShadow:
+                        " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                      height:"17em"
+                    }}
+                    onClick={() => {
+                        this.editComment(item);}}
+                  />
 
-        }
-    }
-    editComment = (item) => {
-        this.setState({
-            showCommentEdit: true,
-            obj: item,
-          
-        })
+                  <Card.Body style={{ padding: "0.3rem .1rem" }}>
+                    <button
+                      variant="light"
+                      type="submit"
+                      onClick={() => {
+                        this.editComment(item);
+                      }}
+                      style={{
+                        backgroundColor: "#ffffff00",
+                        border: "0",
+                        color: "gray",
+                        marginLeft: "7em",
+                      }}
+                    >
+                      <i class="fas fa-edit" style={{ fontSize: "1.3em" }}></i>
+                    </button>
 
-    }
-
-    closemodal = () => {
-        this.setState({
-            showCommentEdit: false,
-            user: JSON.parse(localStorage.getItem("user")),
-
-        })
-    }
-
-
-    deleteFavorite = async (item) => {
-        console.log(item);
-        const reqBody={title:item.title}
-        let res = await axios.put(`http://localhost:8080/deleteLike/${this.state.user._id}`, reqBody)
-        localStorage.setItem("user", JSON.stringify(res.data));
-        this.setState({
-                user: JSON.parse(localStorage.getItem("user")),
-        })
-    }
-
-
-
-
-
-    render() {
-
-        return (
-            <>
-
-                <Row md='4' >
-                    {this.state.user.likes.map((item, idx) => {
-                        return (
-                            <div key={idx} >
-
-
-                                <Card style={{ width: '18rem', }}>
-                                    <Card.Img variant="top" src={item.imgUrl} />
-
-                                    <Card.Body>
-                                        <Card.Title>Title:  {item.title}</Card.Title>
-                                        <Card.Text>
-
-                                            {item.description} <br />
-                                            <br />
-                                            <b>Your Note:  {item.comment}</b>
-
-                                            <Button variant="primary" type="submit" onClick={() => { this.editComment(item) }}>
-                                                Update Note
-                                            </Button>
-
-                                            <Button variant="secondary" type="submit" onClick={() => { this.deleteFavorite(item) }}>
-                                                Remove
-                                            </Button>
-
-                                        </Card.Text>
-
-                                    </Card.Body>
-                                </Card>
+                    <button
+                      variant="light"
+                      type="submit"
+                      onClick={() => {
+                        this.deleteFavorite(item);
+                      }}
+                      style={{
+                        backgroundColor: "#ffffff00",
+                        border: "0",
+                        color: "#dc3545",
+                      }}
+                    >
+                      <i
+                        class="fas fa-trash-alt"
+                        style={{ fontSize: "1.3em" }}
+                      ></i>
+                    </button>
+                    {/* <Card.Title
+                      style={{
+                        width: "15em",
+                        fontFamily: "Arial, Helvetica, sans-serif",
+                        fontSize: "1.1em",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {" "}
+                      <img src={logo} style={{ width: "1.2em" }} />{" "}
+                      {item.comment}
+                    </Card.Title>
+                    <Card.Text>
+                      <p>Your Note: {item.comment}</p>
+                    </Card.Text> */}
+                  </Card.Body>
+                </Card>
+                </Col>
+              </div>
+            );
+          })}
+        </Row>
 
 
-                            </div>
-                        )
-                    })
-                    }
-
-                </Row >
-                {this.state.showCommentEdit &&
-                    < Editcommentmodal
-                        user={this.state.user}
-                        showCommentEdit={this.state.showCommentEdit}
-                        closemodal={this.closemodal}
-                        obj={this.state.obj}
-                        updatecomment={this.updatecomment}
-                        setLoginUser={this.props.setLoginUser}
-                    />
-                }
-            </>
-        );
-    }
+        {this.state.showCommentEdit && (
+          <Editcommentmodal
+            user={this.state.user}
+            showCommentEdit={this.state.showCommentEdit}
+            closemodal={this.closemodal}
+            obj={this.state.obj}
+            updatecomment={this.updatecomment}
+            setLoginUser={this.props.setLoginUser}
+          />
+        )}
+      </div>
+    );
+  }
 }
-
 
 export default LikedPost;
